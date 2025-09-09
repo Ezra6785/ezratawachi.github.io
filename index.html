@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hoja de Vida – Ezra Tawachi</title>
+    <meta
+      name="description"
+      content="Hoja de vida moderna en una sola página: experiencia, logros, habilidades, proyectos y contacto."
+    />
+    <style>
+      :root {
+        --bg: #0b0d10;
+        --bg-soft: #111418;
+        --card: #151a20;
+        --text: #e8edf2;
+        --muted: #9aa7b3;
+        --accent: #27c1a5;
+        --accent-2: #06b6d4;
+        --ring: rgba(39, 193, 165, 0.35);
+        --shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
+        --radius: 18px;
+      }
+      .light {
+        --bg: #f7fafc;
+        --bg-soft: #f0f3f6;
+        --card: #ffffff;
+        --text: #0f1720;
+        --muted: #485564;
+        --accent: #0ea5a5;
+        --accent-2: #0891b2;
+        --ring: rgba(8, 145, 178, 0.25);
+        --shadow: 0 8px 28px rgba(2, 8, 23, 0.08);
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        background: linear-gradient(180deg, var(--bg), var(--bg-soft));
+        color: var(--text);
+        font: 400 16px/1.6 "Inter", system-ui, -apple-system, Segoe UI, Roboto,
+          Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji",
+          "Segoe UI Emoji";
+        letter-spacing: 0.1px;
+      }
+      a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+      a:hover {
+        opacity: 0.9;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 28px 18px 80px;
+      }
+
+      header.site {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        backdrop-filter: saturate(140%) blur(8px);
+        background: linear-gradient(
+          180deg,
+          rgba(0, 0, 0, 0.35),
+          rgba(0, 0, 0, 0)
+        );
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      }
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 14px 18px;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .logo {
+        width: 40px;
+        height: 40px;
+        border-radius: 12px;
+        background: linear-gradient(135deg, var(--accent), var(--accent-2));
+        box-shadow: 0 4px 18px var(--ring);
+      }
+      .brand h1 {
+        font-size: 18px;
+        margin: 0;
+        letter-spacing: 0.4px;
+      }
+      .brand small {
+        display: block;
+        color: var(--muted);
+        margin-top: 2px;
+      }
+
+      .actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 14px;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: var(--card);
+        color: var(--text);
+        box-shadow: var(--shadow);
+        cursor: pointer;
+        transition: 0.2s ease;
+      }
+      .btn:hover {
+        transform: translateY(-1px);
+      }
+      .btn.primary {
+        background: linear-gradient(135deg, var(--accent), var(--accent-2));
+        color: white;
+        border-color: transparent;
+      }
+
+      /* Hero */
+      .hero {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 26px;
+        padding: 32px 0 12px;
+      }
+      .title {
+        font-size: 40px;
+        line-height: 1.15;
+        letter-spacing: 0.2px;
+        margin: 0 0 8px;
+      }
+      .subtitle {
+        color: var(--muted);
+        margin: 6px 0 18px;
+      }
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .chip {
+        font-size: 12px;
+        padding: 6px 10px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        color: var(--muted);
+      }
+
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+        margin-top: 10px;
+      }
+      .stat {
+        background: var(--card);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: var(--radius);
+        padding: 14px;
+      }
+      .stat h3 {
+        margin: 0;
+        font-size: 22px;
+      }
+      .stat p {
+        margin: 2px 0 0;
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      /* Grid layout */
+      .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 22px;
+        margin-top: 26px;
+      }
+      .card {
+        background: var(--card);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: var(--radius);
+        padding: 22px;
+        box-shadow: var(--shadow);
+      }
+      .card h2 {
+        margin: 0 0 10px;
+        font-size: 18px;
+        letter-spacing: 0.3px;
+      }
+      .card h3 {
+        margin: 12px 0 6px;
+        font-size: 15px;
+      }
+      .muted {
+        color: var(--muted);
+      }
+
+      /* Timeline */
+      .timeline {
+        position: relative;
+      }
+      .timeline::before {
+        content: "";
+        position: absolute;
+        top: 6px;
+        bottom: 6px;
+        left: 10px;
+        width: 2px;
+        background: linear-gradient(var(--accent), transparent);
+      }
+      .tl-item {
+        position: relative;
+        padding-left: 34px;
+        margin: 16px 0;
+      }
+      .tl-item::after {
+        content: "";
+        position: absolute;
+        left: 3px;
+        top: 6px;
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--accent), var(--accent-2));
+        box-shadow: 0 0 0 4px rgba(39, 193, 165, 0.18);
+      }
+      .tl-item h3 {
+        margin: 0 0 4px;
+      }
+      .tl-item small {
+        color: var(--muted);
+      }
+
+      /* Skills */
+      .skill {
+        margin: 12px 0;
+      }
+      .skill b {
+        display: flex;
+        justify-content: space-between;
+        font-weight: 600;
+      }
+      .bar {
+        height: 10px;
+        background: rgba(255, 255, 255, 0.06);
+        border-radius: 999px;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+      }
+      .bar > span {
+        display: block;
+        height: 100%;
+        width: 0;
+        background: linear-gradient(90deg, var(--accent), var(--accent-2));
+        box-shadow: 0 0 18px var(--ring) inset;
+        transition: width 1.2s ease;
+      }
+
+      /* Project cards */
+      .proj {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .pill {
+        display: inline-block;
+        font-size: 11px;
+        padding: 3px 8px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        color: var(--muted);
+      }
+
+      /* Footer */
+      footer {
+        margin-top: 26px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      /* WhatsApp floating */
+      .whatsapp-float {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: linear-gradient(135deg, var(--accent), var(--accent-2));
+        color: #fff;
+        font-size: 24px;
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: var(--shadow);
+        z-index: 50;
+      }
+
+      /* Responsive */
+      @media (max-width: 980px) {
+        .hero {
+          grid-template-columns: 1fr;
+        }
+        .stats {
+          grid-template-columns: 1fr 1fr;
+        }
+        .grid {
+          grid-template-columns: 1fr;
+        }
+        .proj {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* Print for PDF */
+      @media print {
+        header.site {
+          display: none;
+        }
+        body {
+          background: white;
+        }
+        .card {
+          break-inside: avoid;
+        }
+        .whatsapp-float {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site">
+      <nav class="nav container">
+        <div class="brand">
+          <div class="logo" aria-hidden="true"></div>
+          <div>
+            <h1>Ezra Tawachi</h1>
+            <small>Gerencia IT | Automatización | Retail</small>
+          </div>
+        </div>
+        <div class="actions">
+          <button class="btn" id="themeBtn" aria-label="Cambiar tema">
+            🌗 Tema
+          </button>
+          <button class="btn primary" id="printBtn" aria-label="Descargar PDF">
+            ⬇️ Descargar PDF
+          </button>
+          <a
+            class="btn"
+            id="whatsappBtn"
+            href="https://wa.me/50764931573"
+            target="_blank"
+            rel="noopener"
+            >💬 WhatsApp</a
+          >
+        </div>
+      </nav>
+    </header>
+
+    <main class="container">
+      <!-- HERO -->
+      <section class="hero">
+        <div>
+          <h2 class="title">
+            Hola, soy
+            <span style="color: var(--accent)">Ezra Tawachi</span> — construyo
+            sistemas prácticos que ordenan la operación y mejoran la visibilidad
+            del negocio.
+          </h2>
+          <p class="subtitle">
+            Foco en retail y distribución: inventarios, pedidos, reportería e
+            integraciones ligeras en la nube.
+            <br />En mi tiempo libre creo
+            <a
+              href="https://www.etsy.com/shop/sheetsbrewery/"
+              target="_blank"
+              rel="noopener"
+              >plantillas de Google Sheets en Etsy</a
+            >
+            (automatizaciones y dashboards).
+          </p>
+          <div class="tags">
+            <span class="chip">Automatización (Apps Script / Zapier)</span>
+            <span class="chip">ERP (exposición SAP)</span>
+            <span class="chip">SQL básico</span>
+            <span class="chip">HTML • CSS • JS</span>
+            <span class="chip">Etsy: productos digitales</span>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <h3>3+ años</h3>
+              <p>aplicando tecnología al negocio</p>
+            </div>
+            <div class="stat">
+              <h3>10+ flujos</h3>
+              <p>automatizados y documentados</p>
+            </div>
+            <div class="stat">
+              <h3>2 sectores</h3>
+              <p>retail & farmacia</p>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <h2>Contacto</h2>
+          <p class="muted">Panamá · disponible híbrido/remoto</p>
+          <div style="display: grid; gap: 10px; margin-top: 8px">
+            <div>
+              📧
+              <a href="mailto:ezrawachi@gmail.com">ezrawachi@gmail.com</a>
+            </div>
+            <div>📱 <a href="tel:+50764931573">+507 64931573</a></div>
+            <div>
+              💼
+              <a
+                href="https://www.linkedin.com/in/ezra-tawachi-494ab01ab/"
+                target="_blank"
+                rel="noopener"
+                >LinkedIn</a
+              >
+            </div>
+            <div>
+              🛒
+              <a
+                href="https://www.etsy.com/shop/sheetsbrewery/"
+                target="_blank"
+                rel="noopener"
+                >Etsy: Sheets Brewery</a
+              >
+            </div>
+            <div>🗎 <a href="#" id="copyLink">Copiar enlace del CV</a></div>
+            <div>
+              💬
+              <a href="https://wa.me/50764931573" target="_blank" rel="noopener"
+                >Contactar por WhatsApp</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- GRID SECTION -->
+      <section class="grid">
+        <!-- Experiencia -->
+        <article class="card">
+          <h2>Experiencia</h2>
+          <div class="timeline">
+            <div class="tl-item">
+              <h3>Empresa familiar · Retail/Distribución</h3>
+              <small>Noviembre 2021 – Diciembre 2023 · Panamá</small>
+              <ul>
+                <li>
+                  Pasé procesos manuales a digitales (pedidos, inventario,
+                  cobros) para reducir errores y ahorrar tiempo.
+                </li>
+                <li>
+                  Inventario en tiempo real con mínimos y alertas para bodega
+                  (Zona Libre).
+                </li>
+                <li>
+                  Sistema de estados por WhatsApp (stickers + registro) para
+                  informar a clientes y controlar avisos.
+                </li>
+              </ul>
+            </div>
+            <div class="tl-item">
+              <h3>Farmacia D. Azran · Implementación SAP</h3>
+              <small>2023 – 2024 · Panamá</small>
+              <ul>
+                <li>
+                  Participación en reuniones de implementación y soporte a
+                  compras y contabilidad.
+                </li>
+                <li>
+                  Reportes básicos en SQL para visibilidad de notas de crédito y
+                  operaciones clave.
+                </li>
+                <li>
+                  Carga masiva de productos y flujo OCR para subir órdenes de
+                  compra en minutos.
+                </li>
+              </ul>
+            </div>
+            <div class="tl-item">
+              <h3>Empresa familiar · Retorno (Operación y automatización)</h3>
+              <small>2025 – Presente · Panamá</small>
+              <ul>
+                <li>
+                  Retorno tras cierre de la farmacia para continuar la mejora de
+                  procesos.
+                </li>
+                <li>
+                  Catálogo 1-click para clientes mayoristas (PDF/Excel con fotos
+                  y precios).
+                </li>
+                <li>
+                  Mantenimiento y mejoras de inventario, pedidos y comunicación
+                  con clientes.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <!-- Logros -->
+        <article class="card">
+          <h2>Logros Destacados</h2>
+          <ul>
+            <li>
+              Reducción de entregas incompletas al ordenar inventario y estados
+              de pedido.
+            </li>
+            <li>
+              Conciliación de cobros (ATH/transferencias) conectada a estados de
+              pedido.
+            </li>
+            <li>
+              Implementación de cargas masivas + OCR en SAP para compras y
+              productos.
+            </li>
+          </ul>
+          <p class="muted">
+            *Agregar métricas cuando las tengas (p. ej., “−30% errores”,
+            “procesos en 1/5 del tiempo”).
+          </p>
+        </article>
+
+        <!-- Habilidades -->
+        <article class="card">
+          <h2>Habilidades</h2>
+          <div class="skill">
+            <b>Automatización (Apps Script / Zapier)<span>85%</span></b>
+            <div class="bar" data-pct="85"><span></span></div>
+          </div>
+          <div class="skill">
+            <b>Google Workspace (Sheets/Docs/Drive)<span>90%</span></b>
+            <div class="bar" data-pct="90"><span></span></div>
+          </div>
+          <div class="skill">
+            <b>ERP (exposición SAP)<span>60%</span></b>
+            <div class="bar" data-pct="60"><span></span></div>
+          </div>
+          <div class="skill">
+            <b>SQL (reportería básica)<span>55%</span></b>
+            <div class="bar" data-pct="55"><span></span></div>
+          </div>
+          <div class="skill">
+            <b>HTML • CSS • JavaScript<span>70%</span></b>
+            <div class="bar" data-pct="70"><span></span></div>
+          </div>
+          <div class="skill">
+            <b>Ciberseguridad / Networking (bases)<span>40%</span></b>
+            <div class="bar" data-pct="40"><span></span></div>
+          </div>
+        </article>
+
+        <!-- Proyectos -->
+        <article class="card">
+          <h2>Proyectos</h2>
+          <div class="proj">
+            <div class="card" style="padding: 16px">
+              <h3>Inventario en la nube</h3>
+              <p class="muted">
+                Inventario multi-bodega con mínimos, alertas y pedidos
+                automáticos. Interfaz en Sheets, automatización con Apps Script.
+              </p>
+              <div class="pill">Sheets</div>
+              <div class="pill">Apps Script</div>
+              <div class="pill">QR</div>
+            </div>
+            <div class="card" style="padding: 16px">
+              <h3>Pedidos + Estados por WhatsApp</h3>
+              <p class="muted">
+                Flujo de estados y notificaciones para clientes, con registro
+                interno para trazabilidad.
+              </p>
+              <div class="pill">Zapier</div>
+              <div class="pill">Web</div>
+              <div class="pill">WhatsApp</div>
+            </div>
+            <div class="card" style="padding: 16px">
+              <h3>Catálogo 1-click para mayoristas</h3>
+              <p class="muted">
+                Generación automática de catálogos personalizados (PDF/Excel)
+                con fotos y precios por cliente.
+              </p>
+              <div class="pill">Sheets</div>
+              <div class="pill">Apps Script</div>
+              <div class="pill">PDF</div>
+            </div>
+            <div class="card" style="padding: 16px">
+              <h3>Productos digitales (Etsy)</h3>
+              <p class="muted">
+                Plantillas avanzadas de Google Sheets con automatizaciones para
+                tareas, clientes e inventarios.
+              </p>
+              <div class="pill">Sheets</div>
+              <div class="pill">Apps Script</div>
+              <div class="pill">Zapier</div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Educación -->
+        <article class="card">
+          <h2>Formación</h2>
+          <ul>
+            <li>
+              Cursos de programación (HTML, CSS, JS, PHP básico). Inicio 2020.
+            </li>
+            <li>SQL orientado a reportería (nivel básico/intermedio).</li>
+            <li>Fundamentos de ciberseguridad y networking.</li>
+          </ul>
+          <h2 style="margin-top: 14px">Idiomas</h2>
+          <ul>
+            <li>Español (nativo)</li>
+            <li>Inglés (intermedio/avanzado)</li>
+          </ul>
+        </article>
+
+        <!-- Sobre mí -->
+        <article class="card">
+          <h2>Sobre mí</h2>
+          <p>
+            Soy una persona práctica. Me gusta resolver problemas con tecnología
+            que la empresa pueda usar de inmediato. Disfruto aprender rápido,
+            documentar lo que hago y trabajar con equipos de ventas, compras y
+            bodega para que todo fluya.
+          </p>
+          <h3>Lo que busco</h3>
+          <p>
+            Un rol de Gerencia IT u Operaciones Tech donde pueda ordenar
+            procesos, automatizar y construir tableros con datos claros para
+            decidir mejor.
+          </p>
+        </article>
+
+        <!-- Contacto rápido -->
+        <article class="card">
+          <h2>Disponibilidad</h2>
+          <ul>
+            <li>Inicio: inmediato</li>
+            <li>Modalidad: híbrido o remoto (Panamá)</li>
+            <li>Entrevistas: coordinación por WhatsApp o email</li>
+          </ul>
+        </article>
+      </section>
+
+      <footer class="container">
+        <p>
+          © <span id="year"></span> Ezra Tawachi. Hecho con HTML + CSS + JS.
+        </p>
+      </footer>
+    </main>
+
+    <!-- Botón flotante de WhatsApp -->
+    <a
+      class="whatsapp-float"
+      href="https://wa.me/50764931573"
+      target="_blank"
+      rel="noopener"
+      aria-label="Contactar por WhatsApp"
+      >💬</a
+    >
+
+    <script>
+      // Utilidades simples
+      const $ = (s, ctx = document) => ctx.querySelector(s);
+      const $$ = (s, ctx = document) => Array.from(ctx.querySelectorAll(s));
+
+      // Tema claro/oscuro con persistencia
+      const themeBtn = $("#themeBtn");
+      const root = document.documentElement;
+      function setTheme(mode) {
+        if (mode === "light") {
+          root.classList.add("light");
+          localStorage.setItem("theme", "light");
+        } else {
+          root.classList.remove("light");
+          localStorage.setItem("theme", "dark");
+        }
+      }
+      setTheme(localStorage.getItem("theme") || "dark");
+      themeBtn.addEventListener("click", () => {
+        const isLight = root.classList.toggle("light");
+        localStorage.setItem("theme", isLight ? "light" : "dark");
+      });
+
+      // Descargar/Imprimir PDF
+      $("#printBtn").addEventListener("click", () => {
+        window.print();
+      });
+
+      // Copiar enlace del CV (si lo alojas)
+      $("#copyLink").addEventListener("click", (e) => {
+        e.preventDefault();
+        const url = location.href;
+        navigator.clipboard.writeText(url).then(() => {
+          alert("Enlace copiado: " + url);
+        });
+      });
+
+      // Animación de barras de skill al entrar en viewport
+      const obs = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const bar = entry.target;
+              const pct = bar.dataset.pct || 0;
+              bar.querySelector("span").style.width = pct + "%";
+              obs.unobserve(bar);
+            }
+          });
+        },
+        { threshold: 0.35 }
+      );
+      $$(".bar").forEach((b) => obs.observe(b));
+
+      // Año actual
+      $("#year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
