@@ -13,6 +13,40 @@
       content="Hoja de vida moderna en una sola página: experiencia, logros, habilidades, proyectos y contacto."
     />
     <style>
+      .pill-toggle {
+        position: relative;
+        display: inline-flex;
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 999px;
+        padding: 4px;
+        gap: 4px;
+        margin-top: 6px;
+        font-size: var(--fs-sm);
+        width: fit-content;
+        overflow: hidden;
+      }
+      .pill-toggle span {
+        padding: 6px 16px;
+        border-radius: 999px;
+        cursor: default;
+        color: var(--muted);
+        position: relative;
+        z-index: 2;
+      }
+      .pill-toggle .slider {
+        position: absolute;
+        top: 4px;
+        left: 4px;
+        bottom: 4px;
+        background: linear-gradient(135deg, var(--accent), var(--accent-2));
+        border-radius: 999px;
+        transition: transform 0.4s ease, width 0.4s ease;
+        z-index: 1;
+      }
+      .pill-toggle span.active {
+        color: #fff;
+        font-weight: 500;
+      }
       /* ============ THEME TOKENS ============ */
       :root {
         --bg: #0b0d10;
@@ -58,11 +92,13 @@
       }
       html,
       body {
-        height: 100%;
+        min-height: 100vh;
       }
+
       body {
         margin: 0;
         background: linear-gradient(180deg, var(--bg), var(--bg-soft));
+        background-attachment: fixed;
         color: var(--text);
         font: 400 var(--fs-md) / 1.6 "Inter", system-ui, -apple-system, Segoe UI,
           Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial,
@@ -94,7 +130,7 @@
       .container {
         max-width: 1200px;
         margin: 0 auto;
-        padding: var(--space-3) var(--space-2) calc(var(--space-5) + 80px);
+        padding: var(--space-3) var(--space-2) var(--space-4);
       }
 
       /* ============ HEADER ============ */
@@ -183,6 +219,7 @@
         grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
         gap: var(--space-3);
         padding: var(--space-4) 0 var(--space-2);
+        align-items: stretch;
       }
       .title {
         font-size: var(--fs-2xl);
@@ -201,12 +238,17 @@
         gap: 8px;
       }
       .chip {
-        font-size: 11px;
-        padding: 6px 10px;
+        font-size: 12px;
+        padding: 6px 14px;
         border-radius: 999px;
-        background: rgba(255, 255, 255, 0.06);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        color: var(--muted);
+        background: linear-gradient(135deg, var(--accent), var(--accent-2));
+        color: white;
+        font-weight: 500;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+        transition: transform 0.2s ease;
+      }
+      .chip:hover {
+        transform: translateY(-2px) scale(1.05);
       }
 
       .stats {
@@ -237,6 +279,55 @@
         border-radius: var(--radius);
         padding: var(--space-3);
         box-shadow: var(--shadow);
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+      #contacto {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 36px 28px;
+        gap: 24px;
+        text-align: center;
+        max-width: 380px;
+        margin: 0 auto;
+      }
+      #contacto h2 {
+        margin-bottom: 8px;
+        font-size: clamp(20px, 1rem + 0.8vw, 24px);
+      }
+      #contacto .muted {
+        font-size: var(--fs-sm);
+        line-height: 1.6;
+      }
+      #contacto .pill-toggle {
+        margin: 12px auto;
+        font-size: var(--fs-sm);
+        transform: scale(1.05);
+      }
+      #contacto .content {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        width: 100%;
+        align-items: center;
+      }
+      #contacto .info-links {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        align-items: flex-start;
+      }
+      #contacto .info-links div {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: var(--fs-md);
+      }
+      #contacto .info-links a {
+        font-size: var(--fs-md);
+        line-height: 1.6;
       }
       .card h2 {
         margin: 0 0 10px;
@@ -402,9 +493,7 @@
           gap: 8px;
         }
         .container {
-          padding-bottom: calc(
-            var(--space-5) + 100px
-          ); /* espacio para el FAB */
+          padding-bottom: var(--space-4);
         }
       }
       @media (max-width: 420px) {
@@ -465,7 +554,7 @@
           <div class="logo" aria-hidden="true"></div>
           <div>
             <h1>Ezra Tawachi</h1>
-            <small>Gerencia IT | Automatización | Retail</small>
+            <small>Operaciones Tech | Comercio</small>
           </div>
         </div>
         <div class="actions">
@@ -493,9 +582,9 @@
         <div>
           <h2 class="title">
             Hola, soy
-            <span style="color: var(--accent)">Ezra Tawachi</span> — construyo
-            sistemas prácticos que ordenan la operación y mejoran la visibilidad
-            del negocio.
+            <span style="color: var(--accent)">Ezra Tawachi</span> — me enfoco
+            en aplicar tecnología de forma práctica para que las operaciones
+            sean más claras, ordenadas y eficientes.
           </h2>
           <p class="subtitle">
             Foco en retail y distribución: inventarios, pedidos, reportería e
@@ -511,10 +600,17 @@
           </p>
           <div class="tags" aria-label="Etiquetas">
             <span class="chip">Automatización (Apps Script / Zapier)</span>
-            <span class="chip">ERP (exposición SAP)</span>
+            <span class="chip">ERP · SAP (exposición)</span>
             <span class="chip">SQL básico</span>
             <span class="chip">HTML • CSS • JS</span>
-            <span class="chip">Etsy: productos digitales</span>
+            <span class="chip">Google Workspace Avanzado</span>
+            <span class="chip">Gestión de Inventario</span>
+            <span class="chip">Distribución Mayorista</span>
+            <span class="chip">Ciberseguridad (bases)</span>
+            <span class="chip">Etsy · Productos Digitales</span>
+            <span class="chip">Herramientas AI</span>
+            <span class="chip">Excel / Sheets Avanzado</span>
+            <span class="chip">Terminal & Git</span>
           </div>
           <div class="stats" aria-label="Indicadores">
             <div class="stat" role="figure" aria-label="Experiencia">
@@ -526,44 +622,73 @@
               <p>automatizados y documentados</p>
             </div>
             <div class="stat" role="figure" aria-label="Sectores">
-              <h3>2 sectores</h3>
-              <p>retail & farmacia</p>
+              <h3>4 sectores</h3>
+              <p>retail · farmacia · distribución · ecommerce</p>
             </div>
           </div>
         </div>
-        <div class="card" aria-labelledby="contacto-titulo">
-          <h2 id="contacto-titulo">Contacto</h2>
-          <p class="muted">Panamá · disponible híbrido/remoto</p>
-          <div style="display: grid; gap: 10px; margin-top: 8px">
-            <div>
-              📧
-              <a href="mailto:ezrawachi@gmail.com">ezrawachi@gmail.com</a>
+        <div class="card" id="contacto" aria-labelledby="contacto-titulo">
+          <div class="content">
+            <h2 id="contacto-titulo">Contacto</h2>
+            <p class="muted">Panamá · disponible</p>
+            <div class="pill-toggle" id="availability">
+              <span>remoto</span>
+              <span>híbrido</span>
+              <span>presencial</span>
+              <div class="slider"></div>
             </div>
-            <div>📱 <a href="tel:+50764931573">+507 64931573</a></div>
-            <div>
-              💼
-              <a
-                href="https://www.linkedin.com/in/ezra-tawachi-494ab01ab/"
-                target="_blank"
-                rel="noopener"
-                >LinkedIn</a
-              >
-            </div>
-            <div>
-              🛒
-              <a
-                href="https://www.etsy.com/shop/sheetsbrewery/"
-                target="_blank"
-                rel="noopener"
-                >Etsy: Sheets Brewery</a
-              >
-            </div>
-            <div>🗎 <a href="#" id="copyLink">Copiar enlace del CV</a></div>
-            <div>
-              💬
-              <a href="https://wa.me/50764931573" target="_blank" rel="noopener"
-                >Contactar por WhatsApp</a
-              >
+            <script>
+              const pills = document.querySelectorAll("#availability span");
+              const slider = document.querySelector("#availability .slider");
+              let pos = 0;
+              function updatePill() {
+                const activePill = pills[pos];
+                pills.forEach((p, i) =>
+                  p.classList.toggle("active", i === pos)
+                );
+                slider.style.width = activePill.offsetWidth + "px";
+                slider.style.transform = `translateX(${
+                  activePill.offsetLeft - 4
+                }px)`;
+                pos = (pos + 1) % pills.length;
+              }
+              updatePill();
+              setInterval(updatePill, 2000);
+            </script>
+            <div class="info-links">
+              <div>
+                📧
+                <a href="mailto:ezrawachi@gmail.com">ezrawachi@gmail.com</a>
+              </div>
+              <div>📱 <a href="tel:+50764931573">+507 64931573</a></div>
+              <div>
+                💼
+                <a
+                  href="https://www.linkedin.com/in/ezra-tawachi-494ab01ab/"
+                  target="_blank"
+                  rel="noopener"
+                  >LinkedIn</a
+                >
+              </div>
+              <div>
+                🛒
+                <a
+                  href="https://www.etsy.com/shop/sheetsbrewery/"
+                  target="_blank"
+                  rel="noopener"
+                  >Etsy: Sheets Brewery</a
+                >
+              </div>
+              <div>🗎 <a href="#" id="copyLink">Copiar enlace del CV</a></div>
+              <div>
+                💬
+                <a
+                  href="https://wa.me/50764931573"
+                  target="_blank"
+                  rel="noopener"
+                  >Contactar por WhatsApp</a
+                >
+              </div>
             </div>
           </div>
         </div>
@@ -679,8 +804,20 @@
             <div class="bar" data-pct="70"><span></span></div>
           </div>
           <div class="skill">
-            <b>Ciberseguridad / Networking (bases)<span>40%</span></b>
+            <b>🔒 Fundamentos de Ciberseguridad<span>40%</span></b>
             <div class="bar" data-pct="40"><span></span></div>
+          </div>
+          <div class="skill">
+            <b>Herramientas AI (ChatGPT / Zapier AI)<span>70%</span></b>
+            <div class="bar" data-pct="70"><span></span></div>
+          </div>
+          <div class="skill">
+            <b>Excel Avanzado<span>80%</span></b>
+            <div class="bar" data-pct="80"><span></span></div>
+          </div>
+          <div class="skill">
+            <b>Uso de Terminal (Git básico)<span>65%</span></b>
+            <div class="bar" data-pct="65"><span></span></div>
           </div>
         </article>
 
