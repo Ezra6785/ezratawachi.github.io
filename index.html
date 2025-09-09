@@ -13,7 +13,9 @@
       content="Hoja de vida moderna en una sola página: experiencia, logros, habilidades, proyectos y contacto."
     />
     <style>
-      /* ============ THEME TOKENS ============ */
+      /* =======================================
+         THEME TOKENS
+      ======================================= */
       :root {
         --bg: #0b0d10;
         --bg-soft: #111418;
@@ -23,16 +25,19 @@
         --accent: #27c1a5;
         --accent-2: #06b6d4;
         --ring: rgba(39, 193, 165, 0.35);
-        --shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
+        --shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
         --radius: 18px;
 
-        /* fluid type & spacing */
-        --fs-xs: clamp(12px, 0.8rem + 0.1vw, 13px);
-        --fs-sm: clamp(13px, 0.85rem + 0.15vw, 14px);
-        --fs-md: clamp(15px, 0.95rem + 0.2vw, 16px);
+        --maxw: 1200px;
+        --gutter: clamp(12px, 2vw, 24px);
+
+        /* refined fluid scales (work great at 320px) */
+        --fs-xs: clamp(11.5px, 0.72rem + 0.1vw, 13px);
+        --fs-sm: clamp(12.5px, 0.78rem + 0.2vw, 14.5px);
+        --fs-md: clamp(14px, 0.9rem + 0.25vw, 16.5px);
         --fs-lg: clamp(18px, 1.05rem + 0.6vw, 22px);
-        --fs-xl: clamp(24px, 1.3rem + 1.2vw, 32px);
-        --fs-2xl: clamp(28px, 1.6rem + 2vw, 40px);
+        --fs-xl: clamp(22px, 1.15rem + 1vw, 30px);
+        --fs-2xl: clamp(26px, 1.3rem + 2vw, 40px);
 
         --space-1: clamp(6px, 0.25rem + 0.2vw, 10px);
         --space-2: clamp(10px, 0.5rem + 0.4vw, 14px);
@@ -45,16 +50,23 @@
         --bg-soft: #f0f3f6;
         --card: #ffffff;
         --text: #0f1720;
-        --muted: #485564;
+        --muted: #465465;
         --accent: #0ea5a5;
         --accent-2: #0891b2;
-        --ring: rgba(8, 145, 178, 0.25);
-        --shadow: 0 8px 28px rgba(2, 8, 23, 0.08);
+        --ring: rgba(8, 145, 178, 0.22);
+        --shadow: 0 8px 24px rgba(2, 8, 23, 0.08);
       }
 
-      /* ============ BASE ============ */
-      * {
+      /* =======================================
+         BASE / RESET
+      ======================================= */
+      *,
+      *::before,
+      *::after {
         box-sizing: border-box;
+      }
+      html {
+        -webkit-text-size-adjust: 100%;
       }
       html,
       body {
@@ -70,20 +82,31 @@
         letter-spacing: 0.1px;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
+        overflow-x: hidden; /* prevent accidental sideways scroll */
       }
       img,
       svg,
       video {
-        max-width: 100%;
-        height: auto;
+        max-inline-size: 100%;
+        block-size: auto;
         display: block;
+      }
+      p,
+      li,
+      small,
+      a,
+      h1,
+      h2,
+      h3 {
+        overflow-wrap: anywhere; /* handles long links/text nicely */
+        hyphens: auto;
       }
       a {
         color: var(--accent);
         text-decoration: none;
       }
       a:hover {
-        opacity: 0.9;
+        opacity: 0.95;
       }
       :focus-visible {
         outline: 2px solid var(--accent-2);
@@ -92,12 +115,15 @@
       }
 
       .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: var(--space-3) var(--space-2) calc(var(--space-5) + 80px);
+        inline-size: min(100% - (var(--gutter) * 2), var(--maxw));
+        margin-inline: auto;
+        padding-block: var(--space-3);
+        padding-inline: 0;
       }
 
-      /* ============ HEADER ============ */
+      /* =======================================
+         HEADER
+      ======================================= */
       header.site {
         position: sticky;
         top: 0;
@@ -109,13 +135,14 @@
           rgba(0, 0, 0, 0)
         );
         border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        transform: translateZ(0); /* iOS sticky jitter fix */
       }
       .nav {
         display: grid;
         grid-template-columns: 1fr auto;
         align-items: center;
         gap: var(--space-2);
-        padding: var(--space-2) var(--space-2);
+        padding: var(--space-2) 0;
       }
       .brand {
         display: grid;
@@ -152,6 +179,7 @@
         align-items: center;
         gap: 8px;
         justify-self: end;
+        flex-wrap: wrap; /* allows wrapping on small screens */
       }
       .btn {
         display: inline-flex;
@@ -164,12 +192,15 @@
         color: var(--text);
         box-shadow: var(--shadow);
         cursor: pointer;
-        transition: transform 0.2s ease;
+        transition: transform 0.18s ease, box-shadow 0.18s ease;
         font-size: var(--fs-sm);
-        min-height: 40px;
+        min-height: 42px;
+        line-height: 1;
+        will-change: transform;
       }
       .btn:hover {
         transform: translateY(-1px);
+        box-shadow: 0 10px 28px rgba(0, 0, 0, 0.25);
       }
       .btn.primary {
         background: linear-gradient(135deg, var(--accent), var(--accent-2));
@@ -177,12 +208,14 @@
         border-color: transparent;
       }
 
-      /* ============ HERO ============ */
+      /* =======================================
+         HERO
+      ======================================= */
       .hero {
         display: grid;
         grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
         gap: var(--space-3);
-        padding: var(--space-4) 0 var(--space-2);
+        padding-block: var(--space-4) var(--space-2);
       }
       .title {
         font-size: var(--fs-2xl);
@@ -220,6 +253,7 @@
         border: 1px solid rgba(255, 255, 255, 0.06);
         border-radius: var(--radius);
         padding: 12px;
+        min-height: 0; /* ensure content-based height */
       }
       .stat h3 {
         margin: 0;
@@ -237,9 +271,13 @@
         border-radius: var(--radius);
         padding: var(--space-3);
         box-shadow: var(--shadow);
+        min-height: 0;
+      }
+      .card > * + * {
+        margin-top: 10px; /* consistent inner rhythm */
       }
       .card h2 {
-        margin: 0 0 10px;
+        margin: 0 0 8px;
         font-size: clamp(16px, 0.95rem + 0.4vw, 18px);
         letter-spacing: 0.3px;
       }
@@ -251,7 +289,9 @@
         color: var(--muted);
       }
 
-      /* ============ GRID LAYOUT (AUTO-FIT) ============ */
+      /* =======================================
+         GRID LAYOUT (AUTO-FIT)
+      ======================================= */
       .grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -259,7 +299,9 @@
         margin-top: var(--space-3);
       }
 
-      /* ============ TIMELINE ============ */
+      /* =======================================
+         TIMELINE
+      ======================================= */
       .timeline {
         position: relative;
       }
@@ -299,7 +341,9 @@
         margin: 8px 0 0;
       }
 
-      /* ============ SKILLS ============ */
+      /* =======================================
+         SKILLS
+      ======================================= */
       .skill {
         margin: 12px 0;
       }
@@ -320,13 +364,15 @@
       .bar > span {
         display: block;
         height: 100%;
-        width: 0;
+        width: 0; /* animated in JS */
         background: linear-gradient(90deg, var(--accent), var(--accent-2));
         box-shadow: 0 0 18px var(--ring) inset;
         transition: width 1.2s ease;
       }
 
-      /* ============ PROJECT CARDS ============ */
+      /* =======================================
+         PROJECT CARDS
+      ======================================= */
       .proj {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -344,14 +390,18 @@
         margin-top: 6px;
       }
 
-      /* ============ FOOTER ============ */
+      /* =======================================
+         FOOTER
+      ======================================= */
       footer {
         margin-top: var(--space-3);
         color: var(--muted);
         font-size: var(--fs-sm);
       }
 
-      /* ============ WHATSAPP FLOAT ============ */
+      /* =======================================
+         WHATSAPP FLOAT
+      ======================================= */
       .whatsapp-float {
         position: fixed;
         bottom: max(20px, env(safe-area-inset-bottom));
@@ -367,9 +417,13 @@
         justify-content: center;
         box-shadow: var(--shadow);
         z-index: 50;
+        text-decoration: none;
       }
 
-      /* ============ RESPONSIVE REFINEMENTS ============ */
+      /* =======================================
+         RESPONSIVE REFINEMENTS
+         breakpoints: 980 / 720 / 560 / 380 / 320
+      ======================================= */
       @media (max-width: 980px) {
         .hero {
           grid-template-columns: 1fr;
@@ -378,11 +432,15 @@
           grid-template-columns: repeat(3, 1fr);
         }
         .actions .btn {
-          min-height: 38px;
-          padding: 8px 10px;
+          min-height: 40px;
+          padding: 9px 10px;
         }
       }
-      @media (max-width: 680px) {
+      @media (max-width: 720px) {
+        .stats {
+          grid-template-columns: 1fr 1fr;
+          gap: 8px;
+        }
         .nav {
           grid-template-columns: 1fr;
           gap: 10px;
@@ -397,27 +455,31 @@
           flex: 1 1 auto;
           justify-content: center;
         }
-        .stats {
-          grid-template-columns: 1fr 1fr;
-          gap: 8px;
-        }
         .container {
-          padding-bottom: calc(
-            var(--space-5) + 100px
-          ); /* espacio para el FAB */
+          /* extra bottom space for FAB */
+          padding-bottom: calc(var(--space-5) + 96px);
         }
       }
-      @media (max-width: 420px) {
+      @media (max-width: 560px) {
+        .brand h1 {
+          font-size: clamp(16px, 4vw, 18px);
+        }
+        .brand small {
+          font-size: var(--fs-xs);
+        }
         .logo {
           width: 36px;
           height: 36px;
         }
+      }
+      @media (max-width: 380px) {
+        .btn {
+          padding: 8px 10px;
+          min-height: 40px;
+        }
         .chip {
           font-size: 10px;
           padding: 5px 8px;
-        }
-        .btn {
-          padding: 8px 10px;
         }
         .whatsapp-float {
           width: 52px;
@@ -425,8 +487,37 @@
           font-size: 22px;
         }
       }
+      @media (max-width: 320px) {
+        /* force tighter layout but keep readability */
+        .title {
+          font-size: clamp(22px, 7vw, 26px);
+        }
+        .actions {
+          gap: 4px;
+        }
+        .btn {
+          padding: 8px 8px;
+        }
+        .grid {
+          grid-template-columns: 1fr; /* single column if super small */
+        }
+        .timeline::before,
+        .tl-item::after {
+          opacity: 0.6;
+          transform: scale(0.9);
+        }
+      }
 
-      /* ============ MOTION PREFERENCES ============ */
+      /* Modern viewport units if supported */
+      @supports (height: 100svh) {
+        :root {
+          --vh-fix: 1svh;
+        }
+      }
+
+      /* =======================================
+         MOTION PREFERENCES
+      ======================================= */
       @media (prefers-reduced-motion: reduce) {
         * {
           animation: none !important;
@@ -435,7 +526,9 @@
         }
       }
 
-      /* ============ PRINT FOR PDF ============ */
+      /* =======================================
+         PRINT FOR PDF
+      ======================================= */
       @media print {
         header.site,
         .whatsapp-float,
@@ -468,7 +561,7 @@
             <small>Gerencia IT | Automatización | Retail</small>
           </div>
         </div>
-        <div class="actions">
+        <div class="actions" role="group" aria-label="Acciones principales">
           <button class="btn" id="themeBtn" aria-label="Cambiar tema">
             🌗 Tema
           </button>
