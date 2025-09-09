@@ -2,13 +2,17 @@
 <html lang="es">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
     <title>Hoja de Vida – Ezra Tawachi</title>
     <meta
       name="description"
       content="Hoja de vida moderna en una sola página: experiencia, logros, habilidades, proyectos y contacto."
     />
     <style>
+      /* ============ THEME TOKENS ============ */
       :root {
         --bg: #0b0d10;
         --bg-soft: #111418;
@@ -20,6 +24,20 @@
         --ring: rgba(39, 193, 165, 0.35);
         --shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
         --radius: 18px;
+
+        /* fluid type & spacing */
+        --fs-xs: clamp(12px, 0.8rem + 0.1vw, 13px);
+        --fs-sm: clamp(13px, 0.85rem + 0.15vw, 14px);
+        --fs-md: clamp(15px, 0.95rem + 0.2vw, 16px);
+        --fs-lg: clamp(18px, 1.05rem + 0.6vw, 22px);
+        --fs-xl: clamp(24px, 1.3rem + 1.2vw, 32px);
+        --fs-2xl: clamp(28px, 1.6rem + 2vw, 40px);
+
+        --space-1: clamp(6px, 0.25rem + 0.2vw, 10px);
+        --space-2: clamp(10px, 0.5rem + 0.4vw, 14px);
+        --space-3: clamp(14px, 0.7rem + 0.6vw, 20px);
+        --space-4: clamp(18px, 1rem + 0.8vw, 26px);
+        --space-5: clamp(22px, 1.2rem + 1vw, 32px);
       }
       .light {
         --bg: #f7fafc;
@@ -32,6 +50,8 @@
         --ring: rgba(8, 145, 178, 0.25);
         --shadow: 0 8px 28px rgba(2, 8, 23, 0.08);
       }
+
+      /* ============ BASE ============ */
       * {
         box-sizing: border-box;
       }
@@ -43,10 +63,19 @@
         margin: 0;
         background: linear-gradient(180deg, var(--bg), var(--bg-soft));
         color: var(--text);
-        font: 400 16px/1.6 "Inter", system-ui, -apple-system, Segoe UI, Roboto,
-          Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji",
-          "Segoe UI Emoji";
+        font: 400 var(--fs-md) / 1.6 "Inter", system-ui, -apple-system,
+          Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial,
+          "Apple Color Emoji", "Segoe UI Emoji";
         letter-spacing: 0.1px;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      img,
+      svg,
+      video {
+        max-width: 100%;
+        height: auto;
+        display: block;
       }
       a {
         color: var(--accent);
@@ -55,13 +84,19 @@
       a:hover {
         opacity: 0.9;
       }
+      :focus-visible {
+        outline: 2px solid var(--accent-2);
+        outline-offset: 3px;
+        border-radius: 8px;
+      }
 
       .container {
         max-width: 1200px;
         margin: 0 auto;
-        padding: 28px 18px 80px;
+        padding: var(--space-3) var(--space-2) calc(var(--space-5) + 80px);
       }
 
+      /* ============ HEADER ============ */
       header.site {
         position: sticky;
         top: 0;
@@ -75,16 +110,18 @@
         border-bottom: 1px solid rgba(255, 255, 255, 0.06);
       }
       .nav {
-        display: flex;
+        display: grid;
+        grid-template-columns: 1fr auto;
         align-items: center;
-        justify-content: space-between;
-        gap: 16px;
-        padding: 14px 18px;
+        gap: var(--space-2);
+        padding: var(--space-2) var(--space-2);
       }
       .brand {
-        display: flex;
+        display: grid;
+        grid-template-columns: auto 1fr;
         align-items: center;
         gap: 12px;
+        min-width: 0;
       }
       .logo {
         width: 40px;
@@ -92,35 +129,43 @@
         border-radius: 12px;
         background: linear-gradient(135deg, var(--accent), var(--accent-2));
         box-shadow: 0 4px 18px var(--ring);
+        flex-shrink: 0;
       }
       .brand h1 {
-        font-size: 18px;
+        font-size: var(--fs-lg);
         margin: 0;
         letter-spacing: 0.4px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
       .brand small {
         display: block;
         color: var(--muted);
         margin-top: 2px;
+        font-size: var(--fs-sm);
       }
 
       .actions {
-        display: flex;
+        display: inline-flex;
         align-items: center;
-        gap: 10px;
+        gap: 8px;
+        justify-self: end;
       }
       .btn {
         display: inline-flex;
         align-items: center;
-        gap: 10px;
-        padding: 10px 14px;
+        gap: 8px;
+        padding: 10px 12px;
         border-radius: 12px;
         border: 1px solid rgba(255, 255, 255, 0.08);
         background: var(--card);
         color: var(--text);
         box-shadow: var(--shadow);
         cursor: pointer;
-        transition: 0.2s ease;
+        transition: transform 0.2s ease;
+        font-size: var(--fs-sm);
+        min-height: 40px;
       }
       .btn:hover {
         transform: translateY(-1px);
@@ -131,22 +176,23 @@
         border-color: transparent;
       }
 
-      /* Hero */
+      /* ============ HERO ============ */
       .hero {
         display: grid;
-        grid-template-columns: 1.2fr 0.8fr;
-        gap: 26px;
-        padding: 32px 0 12px;
+        grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+        gap: var(--space-3);
+        padding: var(--space-4) 0 var(--space-2);
       }
       .title {
-        font-size: 40px;
+        font-size: var(--fs-2xl);
         line-height: 1.15;
         letter-spacing: 0.2px;
-        margin: 0 0 8px;
+        margin: 0 0 6px;
       }
       .subtitle {
         color: var(--muted);
-        margin: 6px 0 18px;
+        margin: 6px 0 var(--space-2);
+        font-size: var(--fs-sm);
       }
       .tags {
         display: flex;
@@ -154,7 +200,7 @@
         gap: 8px;
       }
       .chip {
-        font-size: 12px;
+        font-size: 11px;
         padding: 6px 10px;
         border-radius: 999px;
         background: rgba(255, 255, 255, 0.06);
@@ -164,54 +210,55 @@
 
       .stats {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 12px;
-        margin-top: 10px;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+        margin-top: 8px;
       }
       .stat {
         background: var(--card);
         border: 1px solid rgba(255, 255, 255, 0.06);
         border-radius: var(--radius);
-        padding: 14px;
+        padding: 12px;
       }
       .stat h3 {
         margin: 0;
-        font-size: 22px;
+        font-size: clamp(18px, 1rem + 0.6vw, 22px);
       }
       .stat p {
         margin: 2px 0 0;
         color: var(--muted);
-        font-size: 12px;
+        font-size: var(--fs-xs);
       }
 
-      /* Grid layout */
-      .grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 22px;
-        margin-top: 26px;
-      }
       .card {
         background: var(--card);
         border: 1px solid rgba(255, 255, 255, 0.06);
         border-radius: var(--radius);
-        padding: 22px;
+        padding: var(--space-3);
         box-shadow: var(--shadow);
       }
       .card h2 {
         margin: 0 0 10px;
-        font-size: 18px;
+        font-size: clamp(16px, 0.95rem + 0.4vw, 18px);
         letter-spacing: 0.3px;
       }
       .card h3 {
         margin: 12px 0 6px;
-        font-size: 15px;
+        font-size: clamp(14px, 0.9rem + 0.3vw, 15px);
       }
       .muted {
         color: var(--muted);
       }
 
-      /* Timeline */
+      /* ============ GRID LAYOUT (AUTO-FIT) ============ */
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: var(--space-3);
+        margin-top: var(--space-3);
+      }
+
+      /* ============ TIMELINE ============ */
       .timeline {
         position: relative;
       }
@@ -240,14 +287,18 @@
         background: linear-gradient(135deg, var(--accent), var(--accent-2));
         box-shadow: 0 0 0 4px rgba(39, 193, 165, 0.18);
       }
-      .tl-item h3 {
-        margin: 0 0 4px;
-      }
       .tl-item small {
         color: var(--muted);
+        display: block;
+        margin-bottom: 6px;
+        font-size: var(--fs-xs);
+      }
+      .tl-item ul {
+        padding-left: 18px;
+        margin: 8px 0 0;
       }
 
-      /* Skills */
+      /* ============ SKILLS ============ */
       .skill {
         margin: 12px 0;
       }
@@ -255,6 +306,8 @@
         display: flex;
         justify-content: space-between;
         font-weight: 600;
+        font-size: var(--fs-sm);
+        gap: 8px;
       }
       .bar {
         height: 10px;
@@ -272,10 +325,10 @@
         transition: width 1.2s ease;
       }
 
-      /* Project cards */
+      /* ============ PROJECT CARDS ============ */
       .proj {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
         gap: 12px;
       }
       .pill {
@@ -286,69 +339,125 @@
         background: rgba(255, 255, 255, 0.06);
         border: 1px solid rgba(255, 255, 255, 0.08);
         color: var(--muted);
+        margin-right: 6px;
+        margin-top: 6px;
       }
 
-      /* Footer */
+      /* ============ FOOTER ============ */
       footer {
-        margin-top: 26px;
+        margin-top: var(--space-3);
         color: var(--muted);
-        font-size: 13px;
+        font-size: var(--fs-sm);
       }
 
-      /* WhatsApp floating */
+      /* ============ WHATSAPP FLOAT ============ */
       .whatsapp-float {
         position: fixed;
-        bottom: 20px;
-        right: 20px;
+        bottom: max(20px, env(safe-area-inset-bottom));
+        right: max(20px, env(safe-area-inset-right));
         background: linear-gradient(135deg, var(--accent), var(--accent-2));
         color: #fff;
         font-size: 24px;
         width: 56px;
         height: 56px;
         border-radius: 50%;
-        display: flex;
+        display: inline-flex;
         align-items: center;
         justify-content: center;
         box-shadow: var(--shadow);
         z-index: 50;
       }
 
-      /* Responsive */
+      /* ============ RESPONSIVE REFINEMENTS ============ */
       @media (max-width: 980px) {
         .hero {
           grid-template-columns: 1fr;
         }
         .stats {
+          grid-template-columns: repeat(3, 1fr);
+        }
+        .actions .btn {
+          min-height: 38px;
+          padding: 8px 10px;
+        }
+      }
+      @media (max-width: 680px) {
+        .nav {
+          grid-template-columns: 1fr;
+          gap: 10px;
+        }
+        .actions {
+          justify-self: start;
+          width: 100%;
+          gap: 6px;
+        }
+        .actions .btn,
+        .actions a.btn {
+          flex: 1 1 auto;
+          justify-content: center;
+        }
+        .stats {
           grid-template-columns: 1fr 1fr;
+          gap: 8px;
         }
-        .grid {
-          grid-template-columns: 1fr;
+        .container {
+          padding-bottom: calc(var(--space-5) + 100px); /* espacio para el FAB */
         }
-        .proj {
-          grid-template-columns: 1fr;
+      }
+      @media (max-width: 420px) {
+        .logo {
+          width: 36px;
+          height: 36px;
+        }
+        .chip {
+          font-size: 10px;
+          padding: 5px 8px;
+        }
+        .btn {
+          padding: 8px 10px;
+        }
+        .whatsapp-float {
+          width: 52px;
+          height: 52px;
+          font-size: 22px;
         }
       }
 
-      /* Print for PDF */
+      /* ============ MOTION PREFERENCES ============ */
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          animation: none !important;
+          transition: none !important;
+          scroll-behavior: auto !important;
+        }
+      }
+
+      /* ============ PRINT FOR PDF ============ */
       @media print {
-        header.site {
-          display: none;
+        header.site,
+        .whatsapp-float,
+        #themeBtn,
+        #printBtn {
+          display: none !important;
         }
         body {
           background: white;
         }
         .card {
           break-inside: avoid;
+          box-shadow: none;
         }
-        .whatsapp-float {
-          display: none;
+        a[href^="http"]::after {
+          content: " (" attr(href) ")";
+          font-size: 10px;
+          color: #666;
         }
       }
     </style>
   </head>
   <body>
     <header class="site">
-      <nav class="nav container">
+      <nav class="nav container" aria-label="Barra de navegación">
         <div class="brand">
           <div class="logo" aria-hidden="true"></div>
           <div>
@@ -397,30 +506,30 @@
             >
             (automatizaciones y dashboards).
           </p>
-          <div class="tags">
+          <div class="tags" aria-label="Etiquetas">
             <span class="chip">Automatización (Apps Script / Zapier)</span>
             <span class="chip">ERP (exposición SAP)</span>
             <span class="chip">SQL básico</span>
             <span class="chip">HTML • CSS • JS</span>
             <span class="chip">Etsy: productos digitales</span>
           </div>
-          <div class="stats">
-            <div class="stat">
+          <div class="stats" aria-label="Indicadores">
+            <div class="stat" role="figure" aria-label="Experiencia">
               <h3>3+ años</h3>
               <p>aplicando tecnología al negocio</p>
             </div>
-            <div class="stat">
+            <div class="stat" role="figure" aria-label="Flujos">
               <h3>10+ flujos</h3>
               <p>automatizados y documentados</p>
             </div>
-            <div class="stat">
+            <div class="stat" role="figure" aria-label="Sectores">
               <h3>2 sectores</h3>
               <p>retail & farmacia</p>
             </div>
           </div>
         </div>
-        <div class="card">
-          <h2>Contacto</h2>
+        <div class="card" aria-labelledby="contacto-titulo">
+          <h2 id="contacto-titulo">Contacto</h2>
           <p class="muted">Panamá · disponible híbrido/remoto</p>
           <div style="display: grid; gap: 10px; margin-top: 8px">
             <div>
@@ -460,8 +569,8 @@
       <!-- GRID SECTION -->
       <section class="grid">
         <!-- Experiencia -->
-        <article class="card">
-          <h2>Experiencia</h2>
+        <article class="card" aria-labelledby="exp-title">
+          <h2 id="exp-title">Experiencia</h2>
           <div class="timeline">
             <div class="tl-item">
               <h3>Empresa familiar · Retail/Distribución</h3>
@@ -521,8 +630,8 @@
         </article>
 
         <!-- Logros -->
-        <article class="card">
-          <h2>Logros Destacados</h2>
+        <article class="card" aria-labelledby="logros-title">
+          <h2 id="logros-title">Logros Destacados</h2>
           <ul>
             <li>
               Reducción de entregas incompletas al ordenar inventario y estados
@@ -544,8 +653,8 @@
         </article>
 
         <!-- Habilidades -->
-        <article class="card">
-          <h2>Habilidades</h2>
+        <article class="card" aria-labelledby="habilidades-title">
+          <h2 id="habilidades-title">Habilidades</h2>
           <div class="skill">
             <b>Automatización (Apps Script / Zapier)<span>85%</span></b>
             <div class="bar" data-pct="85"><span></span></div>
@@ -573,8 +682,8 @@
         </article>
 
         <!-- Proyectos -->
-        <article class="card">
-          <h2>Proyectos</h2>
+        <article class="card" aria-labelledby="proyectos-title">
+          <h2 id="proyectos-title">Proyectos</h2>
           <div class="proj">
             <div class="card" style="padding: 16px">
               <h3>Inventario en la nube</h3>
@@ -582,9 +691,11 @@
                 Inventario multi-bodega con mínimos, alertas y pedidos
                 automáticos. Interfaz en Sheets, automatización con Apps Script.
               </p>
-              <div class="pill">Sheets</div>
-              <div class="pill">Apps Script</div>
-              <div class="pill">QR</div>
+              <div>
+                <span class="pill">Sheets</span>
+                <span class="pill">Apps Script</span>
+                <span class="pill">QR</span>
+              </div>
             </div>
             <div class="card" style="padding: 16px">
               <h3>Pedidos + Estados por WhatsApp</h3>
@@ -592,9 +703,11 @@
                 Flujo de estados y notificaciones para clientes, con registro
                 interno para trazabilidad.
               </p>
-              <div class="pill">Zapier</div>
-              <div class="pill">Web</div>
-              <div class="pill">WhatsApp</div>
+              <div>
+                <span class="pill">Zapier</span>
+                <span class="pill">Web</span>
+                <span class="pill">WhatsApp</span>
+              </div>
             </div>
             <div class="card" style="padding: 16px">
               <h3>Catálogo 1-click para mayoristas</h3>
@@ -602,9 +715,11 @@
                 Generación automática de catálogos personalizados (PDF/Excel)
                 con fotos y precios por cliente.
               </p>
-              <div class="pill">Sheets</div>
-              <div class="pill">Apps Script</div>
-              <div class="pill">PDF</div>
+              <div>
+                <span class="pill">Sheets</span>
+                <span class="pill">Apps Script</span>
+                <span class="pill">PDF</span>
+              </div>
             </div>
             <div class="card" style="padding: 16px">
               <h3>Productos digitales (Etsy)</h3>
@@ -612,16 +727,18 @@
                 Plantillas avanzadas de Google Sheets con automatizaciones para
                 tareas, clientes e inventarios.
               </p>
-              <div class="pill">Sheets</div>
-              <div class="pill">Apps Script</div>
-              <div class="pill">Zapier</div>
+              <div>
+                <span class="pill">Sheets</span>
+                <span class="pill">Apps Script</span>
+                <span class="pill">Zapier</span>
+              </div>
             </div>
           </div>
         </article>
 
         <!-- Educación -->
-        <article class="card">
-          <h2>Formación</h2>
+        <article class="card" aria-labelledby="formacion-title">
+          <h2 id="formacion-title">Formación</h2>
           <ul>
             <li>
               Cursos de programación (HTML, CSS, JS, PHP básico). Inicio 2020.
@@ -637,8 +754,8 @@
         </article>
 
         <!-- Sobre mí -->
-        <article class="card">
-          <h2>Sobre mí</h2>
+        <article class="card" aria-labelledby="sobre-mi-title">
+          <h2 id="sobre-mi-title">Sobre mí</h2>
           <p>
             Soy una persona práctica. Me gusta resolver problemas con tecnología
             que la empresa pueda usar de inmediato. Disfruto aprender rápido,
@@ -654,8 +771,8 @@
         </article>
 
         <!-- Contacto rápido -->
-        <article class="card">
-          <h2>Disponibilidad</h2>
+        <article class="card" aria-labelledby="disp-title">
+          <h2 id="disp-title">Disponibilidad</h2>
           <ul>
             <li>Inicio: inmediato</li>
             <li>Modalidad: híbrido o remoto (Panamá)</li>
@@ -664,7 +781,7 @@
         </article>
       </section>
 
-      <footer class="container">
+      <footer class="container" role="contentinfo">
         <p>
           © <span id="year"></span> Ezra Tawachi. Hecho con HTML + CSS + JS.
         </p>
@@ -682,7 +799,7 @@
     >
 
     <script>
-      // Utilidades simples
+      // Utilidades
       const $ = (s, ctx = document) => ctx.querySelector(s);
       const $$ = (s, ctx = document) => Array.from(ctx.querySelectorAll(s));
 
@@ -699,23 +816,24 @@
         }
       }
       setTheme(localStorage.getItem("theme") || "dark");
-      themeBtn.addEventListener("click", () => {
+      themeBtn?.addEventListener("click", () => {
         const isLight = root.classList.toggle("light");
         localStorage.setItem("theme", isLight ? "light" : "dark");
       });
 
       // Descargar/Imprimir PDF
-      $("#printBtn").addEventListener("click", () => {
+      $("#printBtn")?.addEventListener("click", () => {
         window.print();
       });
 
-      // Copiar enlace del CV (si lo alojas)
-      $("#copyLink").addEventListener("click", (e) => {
+      // Copiar enlace del CV
+      $("#copyLink")?.addEventListener("click", (e) => {
         e.preventDefault();
         const url = location.href;
-        navigator.clipboard.writeText(url).then(() => {
-          alert("Enlace copiado: " + url);
-        });
+        navigator.clipboard
+          .writeText(url)
+          .then(() => alert("Enlace copiado: " + url))
+          .catch(() => alert("No se pudo copiar el enlace."));
       });
 
       // Animación de barras de skill al entrar en viewport
@@ -725,7 +843,8 @@
             if (entry.isIntersecting) {
               const bar = entry.target;
               const pct = bar.dataset.pct || 0;
-              bar.querySelector("span").style.width = pct + "%";
+              const fill = bar.querySelector("span");
+              if (fill) fill.style.width = pct + "%";
               obs.unobserve(bar);
             }
           });
@@ -736,6 +855,14 @@
 
       // Año actual
       $("#year").textContent = new Date().getFullYear();
+
+      // Ajuste seguro para iOS (altura viewport)
+      const setVH = () => {
+        const vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty("--vh", `${vh}px`);
+      };
+      setVH();
+      window.addEventListener("resize", setVH);
     </script>
   </body>
 </html>
