@@ -13,6 +13,7 @@
       content="Hoja de vida moderna en una sola página: experiencia, logros, habilidades, proyectos y contacto."
     />
     <style>
+      @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@600&display=swap");
       .pill-toggle {
         position: relative;
         display: inline-flex;
@@ -288,21 +289,30 @@
         flex-direction: column;
         align-items: center;
         padding: 36px 28px;
-        gap: 24px;
+        gap: 0;
         text-align: center;
         max-width: 380px;
         margin: 0 auto;
       }
       #contacto h2 {
-        margin-bottom: 8px;
-        font-size: clamp(20px, 1rem + 0.8vw, 24px);
+        margin-bottom: 2px;
+        font-size: clamp(26px, 1.4rem + 1vw, 32px);
+        font-weight: 700;
+        font-family: "Playfair Display", "Poppins", "Inter", system-ui,
+          -apple-system, Segoe UI, Roboto, sans-serif;
+        letter-spacing: 0.2px;
       }
       #contacto .muted {
         font-size: var(--fs-sm);
         line-height: 1.6;
+        margin-top: 0;
+        margin-bottom: 10px;
       }
       #contacto .pill-toggle {
-        margin: 12px auto;
+        margin-top: 6px;
+        margin-bottom: 0;
+        margin-left: auto;
+        margin-right: auto;
         font-size: var(--fs-sm);
         transform: scale(1.05);
       }
@@ -630,11 +640,11 @@
         <div class="card" id="contacto" aria-labelledby="contacto-titulo">
           <div class="content">
             <h2 id="contacto-titulo">Contacto</h2>
-            <p class="muted">Panamá · disponible</p>
+            <p class="muted">Panamá · Disponible</p>
             <div class="pill-toggle" id="availability">
-              <span>remoto</span>
-              <span>híbrido</span>
-              <span>presencial</span>
+              <span>Remoto</span>
+              <span>Híbrido</span>
+              <span>Presencial</span>
               <div class="slider"></div>
             </div>
             <script>
