@@ -218,7 +218,7 @@
       .hero {
         display: grid;
         grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
-        gap: var(--space-3);
+        gap: var(--space-4);
         padding: var(--space-4) 0 var(--space-2);
         align-items: stretch;
       }
@@ -281,24 +281,28 @@
         background: var(--card);
         border: 1px solid rgba(255, 255, 255, 0.06);
         border-radius: var(--radius);
-        padding: var(--space-3);
+        padding: var(--space-3) var(--space-3) var(--space-2);
         box-shadow: var(--shadow);
         display: block;
         width: 100%;
         height: auto;
       }
+      .card :last-child {
+        margin-bottom: 0;
+      }
       #contacto {
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 36px 28px;
+        padding: 24px 20px;
         gap: 0;
         text-align: center;
-        max-width: 380px;
-        margin: 0 auto;
+        max-width: none;
+        width: 100%;
+        margin: 0;
       }
       #contacto h2 {
-        margin-bottom: 2px;
+        margin-bottom: 8px;
         font-size: clamp(26px, 1.4rem + 1vw, 32px);
         font-weight: 700;
         font-family: "Playfair Display", "Poppins", "Inter", system-ui,
@@ -326,11 +330,32 @@
         width: 100%;
         align-items: center;
       }
+      #contacto .pill-group {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin: 10px 0;
+      }
+      #contacto .chip {
+        font-size: 12px;
+        padding: 5px 10px;
+        background: var(--bg-soft);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        color: var(--text);
+        font-weight: 600;
+      }
+      /* Better contrast for contact chips in dark/light themes */
+      #contacto .chip {
+        background: rgba(255, 255, 255, 0.12);
+      }
+      .light #contacto .chip {
+        background: rgba(2, 8, 23, 0.06);
+      }
       #contacto .info-links {
         display: flex;
         flex-direction: column;
         gap: 14px;
-        align-items: flex-start;
+        align-items: center;
       }
       #contacto .info-links div {
         display: flex;
@@ -343,24 +368,36 @@
         line-height: 1.6;
       }
       .card h2 {
-        margin: 0 0 10px;
-        font-size: clamp(16px, 0.95rem + 0.4vw, 18px);
-        letter-spacing: 0.3px;
+        font-size: clamp(18px, 1rem + 0.8vw, 22px);
+        font-weight: 700;
+        border-bottom: 2px solid var(--accent);
+        padding-bottom: 6px;
+        margin-bottom: 14px;
       }
       .card h3 {
-        margin: 12px 0 6px;
-        font-size: clamp(14px, 0.9rem + 0.3vw, 15px);
+        font-size: clamp(15px, 0.95rem + 0.4vw, 18px);
+        font-weight: 600;
+        color: var(--accent-2);
       }
       .muted {
         color: var(--muted);
       }
 
-      /* ============ GRID LAYOUT (AUTO-FIT) ============ */
+      /* ============ GRID LAYOUT (TWO BALANCED COLUMNS) ============ */
       .grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: var(--space-3);
+        grid-template-columns: 2fr 1fr;
+        gap: var(--space-4);
         margin-top: var(--space-3);
+        align-items: start;
+      }
+
+      .col-left,
+      .col-right {
+        display: grid;
+        gap: var(--space-4);
+        align-content: start;
+        align-items: start;
       }
 
       /* ============ TIMELINE ============ */
@@ -402,6 +439,13 @@
         padding-left: 18px;
         margin: 8px 0 0;
       }
+      .tl-item ul li {
+        margin-bottom: 6px;
+      }
+      .tl-item ul li::marker {
+        color: var(--accent);
+        font-weight: 700;
+      }
 
       /* ============ SKILLS ============ */
       .skill {
@@ -413,6 +457,12 @@
         font-weight: 600;
         font-size: var(--fs-sm);
         gap: 8px;
+      }
+      .skill b span {
+        font-size: var(--fs-xs);
+        background: rgba(255, 255, 255, 0.08);
+        padding: 2px 6px;
+        border-radius: 6px;
       }
       .bar {
         height: 10px;
@@ -429,8 +479,69 @@
         box-shadow: 0 0 18px var(--ring) inset;
         transition: width 1.2s ease;
       }
+      /* ============ CHIPS ROW (compact) ============ */
+      .chips-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-top: 10px;
+      }
+      .chips-row .pill,
+      .chips-row .chip {
+        font-size: 11px;
+        padding: 4px 10px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        color: var(--muted);
+      }
+      .light .chips-row .pill,
+      .light .chips-row .chip {
+        background: rgba(2, 8, 23, 0.06);
+      }
+      /* ============ HIGHLIGHT ============ */
+      .highlight {
+        background: linear-gradient(135deg, var(--accent), var(--accent-2));
+        color: white;
+        padding: 12px 16px;
+        border-radius: var(--radius);
+        margin-top: 14px;
+      }
+      .highlight h3 {
+        margin-top: 0;
+        color: white;
+      }
 
       /* ============ PROJECT CARDS ============ */
+
+      /* ============ KPIs (Logros) ============ */
+      .kpis {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+        margin-top: 10px;
+      }
+      .kpi {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 12px;
+        padding: 12px;
+        text-align: center;
+      }
+      .kpi strong {
+        display: block;
+        font-size: clamp(22px, 1.2rem + 0.8vw, 28px);
+        line-height: 1.1;
+      }
+      .kpi span {
+        display: block;
+        color: var(--muted);
+        font-size: var(--fs-xs);
+        margin-top: 4px;
+      }
+      .light .kpi {
+        background: rgba(2, 8, 23, 0.05);
+      }
       .proj {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -484,6 +595,14 @@
         .actions .btn {
           min-height: 38px;
           padding: 8px 10px;
+        }
+        .grid {
+          grid-template-columns: 1fr;
+          gap: var(--space-3);
+        }
+        .col-left,
+        .col-right {
+          gap: var(--space-3);
         }
       }
       @media (max-width: 680px) {
@@ -690,239 +809,247 @@
 
       <!-- GRID SECTION -->
       <section class="grid">
-        <!-- Experiencia -->
-        <article class="card" aria-labelledby="exp-title">
-          <h2 id="exp-title">Experiencia</h2>
-          <div class="timeline">
-            <div class="tl-item">
-              <h3>Empresa familiar · Retail/Distribución</h3>
-              <small>Noviembre 2021 – Diciembre 2023 · Panamá</small>
-              <ul>
-                <li>
-                  Pasé procesos manuales a digitales (pedidos, inventario,
-                  cobros) para reducir errores y ahorrar tiempo.
-                </li>
-                <li>
-                  Implementé inventario en tiempo real con mínimos y alertas
-                  para hacer pedido a la bodega de Zona Libre.
-                </li>
-                <li>
-                  Creé un sistema de estados con stickers por WhatsApp (“pedido
-                  completo / parcial”), enviado cada día a las 2 pm, que redujo
-                  la percepción de entregas incompletas y fortaleció la
-                  confianza de los clientes.
-                </li>
-              </ul>
-            </div>
-            <div class="tl-item">
-              <h3>Farma 507 · Implementación SAP</h3>
-              <small>2023 – 2024 · Panamá</small>
-              <ul>
-                <li>
-                  Participación en reuniones de implementación de SAP con Top
-                  Manage.
-                </li>
-                <li>
-                  Apoyo al departamento de compras: ingreso de órdenes de compra
-                  y creación de flujos internos para que las diferentes
-                  sucursales puedan solicitar a la encargada de compras.
-                </li>
-                <li>
-                  Reportes básicos en SQL para visibilidad de notas de crédito y
-                  operaciones clave.
-                </li>
-                <li>
-                  Carga masiva de productos y flujo OCR para subir órdenes de
-                  compra en minutos.
-                </li>
-              </ul>
-            </div>
-            <div class="tl-item">
-              <h3>Empresa familiar · Retorno (Operación y automatización)</h3>
-              <small>2025 – Presente · Panamá</small>
-              <ul>
-                <li>
-                  Retorno tras cierre de la farmacia para continuar en la
-                  empresa familiar.
-                </li>
-                <li>
-                  Creé un sistema de catálogo 1‑click en Google Sheets conectado
-                  a una base de datos de imágenes en Google Drive: con un botón
-                  se generaban catálogos en PDF (grid) o Excel clásico con fotos
-                  y precios seleccionados.
-                </li>
-                <li>
-                  Encargado de bodega y despachos (abrir/cerrar, revisión de
-                  pedidos, carga y descarga de camiones), además de apoyo
-                  administrativo en reembolsos, atención al cliente en casos
-                  específicos, soporte a la web y solución de incidencias de
-                  sistema.
-                </li>
-              </ul>
-            </div>
-          </div>
-        </article>
-
-        <!-- Logros -->
-        <article class="card" aria-labelledby="logros-title">
-          <h2 id="logros-title">Logros Destacados</h2>
-          <ul>
-            <li>
-              Reducción de entregas incompletas al ordenar inventario y estados
-              de pedido.
-            </li>
-            <li>
-              Conciliación de cobros (ACH/transferencias) conectada a estados de
-              pedido, mejorando la trazabilidad de pagos.
-            </li>
-            <li>
-              Conciliación de cobros (ACH/transferencias) conectada a estados de
-              pedido.
-            </li>
-            <li>
-              Implementación de cargas masivas + OCR en SAP para compras y
-              productos.
-            </li>
-          </ul>
-        </article>
-
-        <!-- Habilidades -->
-        <article class="card" aria-labelledby="habilidades-title">
-          <h2 id="habilidades-title">Habilidades</h2>
-          <div class="skill">
-            <b>Automatización (Apps Script / Zapier)<span>85%</span></b>
-            <div class="bar" data-pct="85"><span></span></div>
-          </div>
-          <div class="skill">
-            <b>Google Workspace (Sheets/Docs/Drive)<span>90%</span></b>
-            <div class="bar" data-pct="90"><span></span></div>
-          </div>
-          <div class="skill">
-            <b>ERP (exposición SAP)<span>60%</span></b>
-            <div class="bar" data-pct="60"><span></span></div>
-          </div>
-          <div class="skill">
-            <b>SQL (reportería básica)<span>55%</span></b>
-            <div class="bar" data-pct="55"><span></span></div>
-          </div>
-          <div class="skill">
-            <b>HTML • CSS • JavaScript<span>70%</span></b>
-            <div class="bar" data-pct="70"><span></span></div>
-          </div>
-          <div class="skill">
-            <b>Fundamentos de Ciberseguridad<span>40%</span></b>
-            <div class="bar" data-pct="40"><span></span></div>
-          </div>
-          <div class="skill">
-            <b>Herramientas AI (ChatGPT / Zapier AI)<span>70%</span></b>
-            <div class="bar" data-pct="70"><span></span></div>
-          </div>
-          <div class="skill">
-            <b>Excel Avanzado<span>80%</span></b>
-            <div class="bar" data-pct="80"><span></span></div>
-          </div>
-          <div class="skill">
-            <b>Uso de Terminal (Git básico)<span>65%</span></b>
-            <div class="bar" data-pct="65"><span></span></div>
-          </div>
-        </article>
-
-        <!-- Proyectos -->
-        <article class="card" aria-labelledby="proyectos-title">
-          <h2 id="proyectos-title">Proyectos</h2>
-          <div class="proj">
-            <div class="card" style="padding: 16px">
-              <h3>Inventario en la nube</h3>
-              <p class="muted">
-                Inventario multi-bodega con mínimos, alertas y pedidos
-                automáticos. Interfaz en Sheets, automatización con Apps Script.
-              </p>
-              <div>
-                <span class="pill">Sheets</span>
-                <span class="pill">Apps Script</span>
-                <span class="pill">QR</span>
+        <div class="col-left">
+          <!-- Experiencia -->
+          <article class="card" aria-labelledby="exp-title">
+            <h2 id="exp-title">Experiencia</h2>
+            <div class="timeline">
+              <div class="tl-item">
+                <h3>Empresa familiar · Retail/Distribución</h3>
+                <small>Noviembre 2021 – Diciembre 2023 · Panamá</small>
+                <ul>
+                  <li>
+                    Pasé procesos manuales a digitales (pedidos, inventario,
+                    cobros) para reducir errores y ahorrar tiempo.
+                  </li>
+                  <li>
+                    Implementé inventario en tiempo real con mínimos y alertas
+                    para hacer pedido a la bodega de Zona Libre.
+                  </li>
+                  <li>
+                    Creé un sistema de estados con stickers por WhatsApp
+                    (“pedido completo / parcial”), enviado cada día a las 2 pm,
+                    que redujo la percepción de entregas incompletas y
+                    fortaleció la confianza de los clientes.
+                  </li>
+                </ul>
+              </div>
+              <div class="tl-item">
+                <h3>Farma 507 · Implementación SAP</h3>
+                <small>2023 – 2024 · Panamá</small>
+                <ul>
+                  <li>
+                    Participación en reuniones de implementación de SAP con Top
+                    Manage.
+                  </li>
+                  <li>
+                    Apoyo al departamento de compras: ingreso de órdenes de
+                    compra y creación de flujos internos para que las diferentes
+                    sucursales puedan solicitar a la encargada de compras.
+                  </li>
+                  <li>
+                    Reportes básicos en SQL para visibilidad de notas de crédito
+                    y operaciones clave.
+                  </li>
+                  <li>
+                    Carga masiva de productos y flujo OCR para subir órdenes de
+                    compra en minutos.
+                  </li>
+                </ul>
+              </div>
+              <div class="tl-item">
+                <h3>Empresa familiar · Retorno (Operación y automatización)</h3>
+                <small>2025 – Presente · Panamá</small>
+                <ul>
+                  <li>
+                    Retorno tras cierre de la farmacia para continuar en la
+                    empresa familiar.
+                  </li>
+                  <li>
+                    Creé un sistema de catálogo 1‑click en Google Sheets
+                    conectado a una base de datos de imágenes en Google Drive:
+                    con un botón se generaban catálogos en PDF (grid) o Excel
+                    clásico con fotos y precios seleccionados.
+                  </li>
+                  <li>
+                    Encargado de bodega y despachos (abrir/cerrar, revisión de
+                    pedidos, carga y descarga de camiones), además de apoyo
+                    administrativo en reembolsos, atención al cliente en casos
+                    específicos, soporte a la web y solución de incidencias de
+                    sistema.
+                  </li>
+                </ul>
               </div>
             </div>
-            <div class="card" style="padding: 16px">
-              <h3>Pedidos + Estados por WhatsApp</h3>
-              <p class="muted">
-                Flujo de estados y notificaciones para clientes, con registro
-                interno para trazabilidad.
-              </p>
-              <div>
-                <span class="pill">Zapier</span>
-                <span class="pill">Web</span>
-                <span class="pill">WhatsApp</span>
+          </article>
+          <!-- Habilidades -->
+          <article class="card" aria-labelledby="habilidades-title">
+            <h2 id="habilidades-title">Habilidades</h2>
+            <div class="skill">
+              <b>Automatización (Apps Script / Zapier)<span>85%</span></b>
+              <div class="bar" data-pct="85"><span></span></div>
+            </div>
+            <div class="skill">
+              <b>Google Workspace (Sheets/Docs/Drive)<span>90%</span></b>
+              <div class="bar" data-pct="90"><span></span></div>
+            </div>
+            <div class="skill">
+              <b>ERP (exposición SAP)<span>60%</span></b>
+              <div class="bar" data-pct="60"><span></span></div>
+            </div>
+            <div class="skill">
+              <b>SQL (reportería básica)<span>55%</span></b>
+              <div class="bar" data-pct="55"><span></span></div>
+            </div>
+            <div class="skill">
+              <b>HTML • CSS • JavaScript<span>70%</span></b>
+              <div class="bar" data-pct="70"><span></span></div>
+            </div>
+            <div class="skill">
+              <b>Fundamentos de Ciberseguridad<span>40%</span></b>
+              <div class="bar" data-pct="40"><span></span></div>
+            </div>
+            <div class="skill">
+              <b>Herramientas AI (ChatGPT / Zapier AI)<span>70%</span></b>
+              <div class="bar" data-pct="70"><span></span></div>
+            </div>
+            <div class="skill">
+              <b>Excel Avanzado<span>80%</span></b>
+              <div class="bar" data-pct="80"><span></span></div>
+            </div>
+            <div class="skill">
+              <b>Uso de Terminal (Git básico)<span>65%</span></b>
+              <div class="bar" data-pct="65"><span></span></div>
+            </div>
+            <h3 style="margin-top: 14px">Stack reciente</h3>
+            <div class="chips-row" aria-label="Stack reciente">
+              <span class="chip">⚙️ Zapier</span>
+              <span class="chip">🧩 Apps Script</span>
+              <span class="chip">🧠 ChatGPT</span>
+              <span class="chip">🗄️ SQL</span>
+              <span class="chip">🔗 Webhooks</span>
+              <span class="chip">📊 Google Sheets</span>
+            </div>
+          </article>
+          <!-- Educación -->
+          <article class="card" aria-labelledby="formacion-title">
+            <h2 id="formacion-title">Formación</h2>
+            <ul>
+              <li>
+                Cursos de programación (HTML, CSS, JS, PHP básico). Inicio 2020.
+              </li>
+              <li>SQL orientado a reportería (nivel básico/intermedio).</li>
+              <li>Fundamentos de ciberseguridad y networking.</li>
+            </ul>
+            <h2 style="margin-top: 14px">Idiomas</h2>
+            <ul>
+              <li>Español (nativo)</li>
+              <li>Inglés (intermedio/avanzado)</li>
+            </ul>
+            <div class="chips-row" aria-label="Herramientas de estudio">
+              <span class="chip">📚 Cursos online</span>
+              <span class="chip">🧪 Proyectos propios</span>
+              <span class="chip">🧭 Documentación</span>
+            </div>
+          </article>
+          <!-- Contacto rápido / Disponibilidad -->
+          <article class="card" aria-labelledby="disp-title">
+            <h2 id="disp-title">Disponibilidad</h2>
+            <ul>
+              <li>Inicio: Inmediato</li>
+              <li>Modalidad: Remoto, Híbrido o Presencial</li>
+            </ul>
+          </article>
+        </div>
+        <div class="col-right">
+          <!-- Logros -->
+          <article class="card" aria-labelledby="logros-title">
+            <h2 id="logros-title">Logros Destacados</h2>
+            <ul>
+              <li>Reducción de entregas percibidas como incompletas.</li>
+              <li>Estados diarios de pedido por WhatsApp para clientes.</li>
+              <li>
+                Conciliación de cobros (ACH/transferencias) conectada a estados
+                de pedido.
+              </li>
+              <li>
+                Implementación de cargas masivas + OCR para órdenes y productos.
+              </li>
+            </ul>
+          </article>
+          <!-- Proyectos -->
+          <article class="card" aria-labelledby="proyectos-title">
+            <h2 id="proyectos-title">Proyectos</h2>
+            <div class="proj">
+              <div class="card" style="padding: 16px">
+                <h3>Inventario en la nube</h3>
+                <p class="muted">
+                  Inventario multi-bodega con mínimos, alertas y pedidos
+                  automáticos. Interfaz en Sheets, automatización con Apps
+                  Script.
+                </p>
+                <div>
+                  <span class="pill">Sheets</span>
+                  <span class="pill">Apps Script</span>
+                  <span class="pill">QR</span>
+                </div>
+              </div>
+              <div class="card" style="padding: 16px">
+                <h3>Pedidos + Estados por WhatsApp</h3>
+                <p class="muted">
+                  Flujo de estados y notificaciones para clientes, con registro
+                  interno para trazabilidad.
+                </p>
+                <div>
+                  <span class="pill">Zapier</span>
+                  <span class="pill">Web</span>
+                  <span class="pill">WhatsApp</span>
+                </div>
+              </div>
+              <div class="card" style="padding: 16px">
+                <h3>Catálogo 1-click para mayoristas</h3>
+                <p class="muted">
+                  Generación automática de catálogos personalizados (PDF/Excel)
+                  con fotos y precios por cliente.
+                </p>
+                <div>
+                  <span class="pill">Sheets</span>
+                  <span class="pill">Apps Script</span>
+                  <span class="pill">PDF</span>
+                </div>
+              </div>
+              <div class="card" style="padding: 16px">
+                <h3>Productos digitales (Etsy)</h3>
+                <p class="muted">
+                  Plantillas avanzadas de Google Sheets con automatizaciones
+                  para tareas, clientes e inventarios.
+                </p>
+                <div>
+                  <span class="pill">Sheets</span>
+                  <span class="pill">Apps Script</span>
+                </div>
               </div>
             </div>
-            <div class="card" style="padding: 16px">
-              <h3>Catálogo 1-click para mayoristas</h3>
-              <p class="muted">
-                Generación automática de catálogos personalizados (PDF/Excel)
-                con fotos y precios por cliente.
+          </article>
+          <!-- Sobre mí -->
+          <article class="card" aria-labelledby="sobre-mi-title">
+            <h2 id="sobre-mi-title">Sobre mí</h2>
+            <p>
+              Soy una persona práctica. Me gusta resolver problemas con
+              tecnología que la empresa pueda usar de inmediato. Disfruto
+              aprender rápido, documentar lo que hago y trabajar con equipos de
+              ventas, compras y bodega para que todo fluya.
+            </p>
+            <div class="highlight">
+              <h3>Lo que busco</h3>
+              <p>
+                Un rol de Gerencia IT u Operaciones Tech donde pueda ordenar
+                procesos, automatizar y construir tableros con datos claros para
+                decidir mejor.
               </p>
-              <div>
-                <span class="pill">Sheets</span>
-                <span class="pill">Apps Script</span>
-                <span class="pill">PDF</span>
-              </div>
             </div>
-            <div class="card" style="padding: 16px">
-              <h3>Productos digitales (Etsy)</h3>
-              <p class="muted">
-                Plantillas avanzadas de Google Sheets con automatizaciones para
-                tareas, clientes e inventarios.
-              </p>
-              <div>
-                <span class="pill">Sheets</span>
-                <span class="pill">Apps Script</span>
-              </div>
-            </div>
-          </div>
-        </article>
-
-        <!-- Educación -->
-        <article class="card" aria-labelledby="formacion-title">
-          <h2 id="formacion-title">Formación</h2>
-          <ul>
-            <li>
-              Cursos de programación (HTML, CSS, JS, PHP básico). Inicio 2020.
-            </li>
-            <li>SQL orientado a reportería (nivel básico/intermedio).</li>
-            <li>Fundamentos de ciberseguridad y networking.</li>
-          </ul>
-          <h2 style="margin-top: 14px">Idiomas</h2>
-          <ul>
-            <li>Español (nativo)</li>
-            <li>Inglés (intermedio/avanzado)</li>
-          </ul>
-        </article>
-
-        <!-- Sobre mí -->
-        <article class="card" aria-labelledby="sobre-mi-title">
-          <h2 id="sobre-mi-title">Sobre mí</h2>
-          <p>
-            Soy una persona práctica. Me gusta resolver problemas con tecnología
-            que la empresa pueda usar de inmediato. Disfruto aprender rápido,
-            documentar lo que hago y trabajar con equipos de ventas, compras y
-            bodega para que todo fluya.
-          </p>
-          <h3>Lo que busco</h3>
-          <p>
-            Un rol de Gerencia IT u Operaciones Tech donde pueda ordenar
-            procesos, automatizar y construir tableros con datos claros para
-            decidir mejor.
-          </p>
-        </article>
-
-        <!-- Contacto rápido -->
-        <article class="card" aria-labelledby="disp-title">
-          <h2 id="disp-title">Disponibilidad</h2>
-          <ul>
-            <li>Inicio: Inmediato</li>
-            <li>Modalidad: Remoto, Híbrido o Presencial</li>
-          </ul>
-        </article>
+          </article>
+        </div>
       </section>
 
       <footer class="container" role="contentinfo">
