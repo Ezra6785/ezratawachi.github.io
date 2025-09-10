@@ -644,30 +644,11 @@
           <div class="content">
             <h2 id="contacto-titulo">Contacto</h2>
             <p class="muted">Panamá · Disponible</p>
-            <div class="pill-toggle" id="availability">
-              <span>Remoto</span>
-              <span>Híbrido</span>
-              <span>Presencial</span>
-              <div class="slider"></div>
+            <div class="pill-group">
+              <span class="chip">Remoto</span>
+              <span class="chip">Híbrido</span>
+              <span class="chip">Presencial</span>
             </div>
-            <script>
-              const pills = document.querySelectorAll("#availability span");
-              const slider = document.querySelector("#availability .slider");
-              let pos = 0;
-              function updatePill() {
-                const activePill = pills[pos];
-                pills.forEach((p, i) =>
-                  p.classList.toggle("active", i === pos)
-                );
-                slider.style.width = activePill.offsetWidth + "px";
-                slider.style.transform = `translateX(${
-                  activePill.offsetLeft - 4
-                }px)`;
-                pos = (pos + 1) % pills.length;
-              }
-              updatePill();
-              setInterval(updatePill, 2000);
-            </script>
             <div class="info-links">
               <div>
                 📧
@@ -722,22 +703,29 @@
                   cobros) para reducir errores y ahorrar tiempo.
                 </li>
                 <li>
-                  Inventario en tiempo real con mínimos y alertas para bodega
-                  (Zona Libre).
+                  Implementé inventario en tiempo real con mínimos y alertas
+                  para hacer pedido a la bodega de Zona Libre.
                 </li>
                 <li>
-                  Sistema de estados por WhatsApp (stickers + registro) para
-                  informar a clientes y controlar avisos.
+                  Creé un sistema de estados con stickers por WhatsApp (“pedido
+                  completo / parcial”), enviado cada día a las 2 pm, que redujo
+                  la percepción de entregas incompletas y fortaleció la
+                  confianza de los clientes.
                 </li>
               </ul>
             </div>
             <div class="tl-item">
-              <h3>Farmacia D. Azran · Implementación SAP</h3>
+              <h3>Farma 507 · Implementación SAP</h3>
               <small>2023 – 2024 · Panamá</small>
               <ul>
                 <li>
-                  Participación en reuniones de implementación y soporte a
-                  compras y contabilidad.
+                  Participación en reuniones de implementación de SAP con Top
+                  Manage.
+                </li>
+                <li>
+                  Apoyo al departamento de compras: ingreso de órdenes de compra
+                  y creación de flujos internos para que las diferentes
+                  sucursales puedan solicitar a la encargada de compras.
                 </li>
                 <li>
                   Reportes básicos en SQL para visibilidad de notas de crédito y
@@ -754,16 +742,21 @@
               <small>2025 – Presente · Panamá</small>
               <ul>
                 <li>
-                  Retorno tras cierre de la farmacia para continuar la mejora de
-                  procesos.
+                  Retorno tras cierre de la farmacia para continuar en la
+                  empresa familiar.
                 </li>
                 <li>
-                  Catálogo 1-click para clientes mayoristas (PDF/Excel con fotos
-                  y precios).
+                  Creé un sistema de catálogo 1‑click en Google Sheets conectado
+                  a una base de datos de imágenes en Google Drive: con un botón
+                  se generaban catálogos en PDF (grid) o Excel clásico con fotos
+                  y precios seleccionados.
                 </li>
                 <li>
-                  Mantenimiento y mejoras de inventario, pedidos y comunicación
-                  con clientes.
+                  Encargado de bodega y despachos (abrir/cerrar, revisión de
+                  pedidos, carga y descarga de camiones), además de apoyo
+                  administrativo en reembolsos, atención al cliente en casos
+                  específicos, soporte a la web y solución de incidencias de
+                  sistema.
                 </li>
               </ul>
             </div>
@@ -777,6 +770,10 @@
             <li>
               Reducción de entregas incompletas al ordenar inventario y estados
               de pedido.
+            </li>
+            <li>
+              Conciliación de cobros (ACH/transferencias) conectada a estados de
+              pedido, mejorando la trazabilidad de pagos.
             </li>
             <li>
               Conciliación de cobros (ACH/transferencias) conectada a estados de
