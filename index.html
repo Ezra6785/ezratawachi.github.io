@@ -404,16 +404,17 @@
         grid-template-columns: 2fr 1fr;
         gap: var(--space-4);
         margin-top: var(--space-3);
-        align-items: stretch;
+        align-items: end;
         grid-auto-rows: 1fr;
       }
 
       .col-left,
       .col-right {
-        display: grid;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
         gap: var(--space-4);
-        align-content: start;
-        align-items: stretch;
       }
 
       /* ============ TIMELINE ============ */
@@ -843,6 +844,15 @@
                     que redujo la percepción de entregas incompletas y
                     fortaleció la confianza de los clientes.
                   </li>
+                  <li>
+                    Asumí un rol integral en la operación de BH Super,
+                    coordinando áreas de atención al cliente, verificación de
+                    pagos y despachos, supervisión de personal, gestión de
+                    proveedores tecnológicos y marketing digital (Instagram).
+                    Además, fui responsable de la parte técnica de la web
+                    (soporte, membresías, plugins y trabajo con programadores
+                    externos).
+                  </li>
                 </ul>
               </div>
               <div class="tl-item">
@@ -905,32 +915,32 @@
               <div class="bar" data-pct="90"><span></span></div>
             </div>
             <div class="skill">
-              <b>ERP (exposición SAP)<span>60%</span></b>
-              <div class="bar" data-pct="60"><span></span></div>
+              <b>Excel Avanzado<span>80%</span></b>
+              <div class="bar" data-pct="80"><span></span></div>
+            </div>
+            <div class="skill">
+              <b>Herramientas AI (ChatGPT + Custom GPT's)<span>70%</span></b>
+              <div class="bar" data-pct="70"><span></span></div>
+            </div>
+            <div class="skill">
+              <b>HTML • CSS • JavaScript<span>80%</span></b>
+              <div class="bar" data-pct="80"><span></span></div>
+            </div>
+            <div class="skill">
+              <b>ERP (exposición SAP)<span>70%</span></b>
+              <div class="bar" data-pct="70"><span></span></div>
             </div>
             <div class="skill">
               <b>SQL (reportería básica)<span>55%</span></b>
               <div class="bar" data-pct="55"><span></span></div>
             </div>
             <div class="skill">
-              <b>HTML • CSS • JavaScript<span>70%</span></b>
-              <div class="bar" data-pct="70"><span></span></div>
+              <b>Uso de Terminal (Git básico)<span>65%</span></b>
+              <div class="bar" data-pct="65"><span></span></div>
             </div>
             <div class="skill">
               <b>Fundamentos de Ciberseguridad<span>40%</span></b>
               <div class="bar" data-pct="40"><span></span></div>
-            </div>
-            <div class="skill">
-              <b>Herramientas AI (ChatGPT / Zapier AI)<span>70%</span></b>
-              <div class="bar" data-pct="70"><span></span></div>
-            </div>
-            <div class="skill">
-              <b>Excel Avanzado<span>80%</span></b>
-              <div class="bar" data-pct="80"><span></span></div>
-            </div>
-            <div class="skill">
-              <b>Uso de Terminal (Git básico)<span>65%</span></b>
-              <div class="bar" data-pct="65"><span></span></div>
             </div>
           </article>
           <!-- Educación -->
@@ -938,10 +948,29 @@
             <h2 id="formacion-title">Formación</h2>
             <ul>
               <li>
-                Cursos de programación (HTML, CSS, JS, PHP básico). Inicio 2020.
+                Web Design for Everybody (Specialization) – University of
+                Michigan (2020)
               </li>
-              <li>SQL orientado a reportería (nivel básico/intermedio).</li>
-              <li>Fundamentos de ciberseguridad y networking.</li>
+              <li>Introduction to HTML5 – University of Michigan (2020)</li>
+              <li>Introduction to CSS3 – University of Michigan (2020)</li>
+              <li>
+                Interactivity with JavaScript – University of Michigan (2020)
+              </li>
+              <li>
+                Advanced Styling with Responsive Design – University of Michigan
+                (2020)
+              </li>
+              <li>
+                Building Web Applications in PHP – University of Michigan (2020)
+              </li>
+              <li>
+                Introduction to Structured Query Language (SQL) – University of
+                Michigan (2020)
+              </li>
+              <li>Introducción a Java – UNAM (2020) – 30 horas</li>
+              <li>Introduction to DevOps – IBM (2024)</li>
+              <li>Foundations of Cybersecurity – Google (2025)</li>
+              <li>Play It Safe: Manage Security Risks – Google (2025)</li>
             </ul>
             <h2 style="margin-top: 14px">Idiomas</h2>
             <ul>
@@ -964,14 +993,29 @@
           <article class="card" aria-labelledby="logros-title">
             <h2 id="logros-title">Logros Destacados</h2>
             <ul>
-              <li>Reducción de entregas percibidas como incompletas.</li>
-              <li>Estados diarios de pedido por WhatsApp para clientes.</li>
               <li>
-                Conciliación de cobros (ACH/transferencias) conectada a estados
-                de pedido.
+                <strong>Reducción de reclamos por entregas incompletas</strong>,
+                gracias a controles y comunicación proactiva.
               </li>
               <li>
-                Implementación de cargas masivas + OCR para órdenes y productos.
+                <strong>Estados diarios automatizados por WhatsApp</strong>, que
+                fortalecieron la confianza y la trazabilidad.
+              </li>
+              <li>
+                <strong
+                  >Conciliación eficiente de cobros (ACH/transferencias)</strong
+                >
+                integrada con los estados de pedido.
+              </li>
+              <li>
+                <strong
+                  >Sistema de inventario completo con entradas, salidas y
+                  alertas de stock mínimo</strong
+                >, reemplazando procesos manuales temporales.
+              </li>
+              <li>
+                <strong>Carga masiva y OCR para órdenes y productos</strong>,
+                acelerando procesos de registro y reduciendo errores.
               </li>
             </ul>
           </article>
@@ -982,14 +1026,26 @@
               <div class="card" style="padding: 16px">
                 <h3>Inventario en la nube</h3>
                 <p class="muted">
-                  Inventario multi-bodega con mínimos, alertas y pedidos
-                  automáticos. Interfaz en Sheets, automatización con Apps
-                  Script.
+                  Inventario con mínimos, alertas y pedidos automáticos.
+                  Interfaz en Sheets, automatización con Apps Script.
                 </p>
                 <div>
                   <span class="pill">Sheets</span>
                   <span class="pill">Apps Script</span>
                   <span class="pill">QR</span>
+                </div>
+              </div>
+              <div class="card" style="padding: 16px">
+                <h3>Sistema de distribución a locales</h3>
+                <p class="muted">
+                  Sistema en Sheets + Apps Script para las 4 farmacias:
+                  verificación de mercancía recibida (check de pendientes) y
+                  flujo de pedidos cíclicos solicitados para cada tienda.
+                </p>
+                <div>
+                  <span class="pill">Sheets</span>
+                  <span class="pill">Apps Script</span>
+                  <span class="pill">Automatización</span>
                 </div>
               </div>
               <div class="card" style="padding: 16px">
