@@ -1170,10 +1170,26 @@
       // Copiar enlace del CV
       $("#copyLink")?.addEventListener("click", (e) => {
         e.preventDefault();
-        const url = location.href;
+        const url = "https://ezra6785.github.io/ezratawachi.github.io/";
         navigator.clipboard
           .writeText(url)
-          .then(() => alert("Enlace copiado: " + url))
+          .then(() => {
+            // Notificación elegante
+            const msg = document.createElement("div");
+            msg.textContent = "✔ Enlace de tu CV copiado";
+            msg.style.position = "fixed";
+            msg.style.bottom = "20px";
+            msg.style.right = "20px";
+            msg.style.background =
+              "linear-gradient(135deg, var(--accent), var(--accent-2))";
+            msg.style.color = "white";
+            msg.style.padding = "10px 16px";
+            msg.style.borderRadius = "8px";
+            msg.style.boxShadow = "0 4px 12px rgba(0,0,0,0.2)";
+            msg.style.zIndex = "1000";
+            document.body.appendChild(msg);
+            setTimeout(() => msg.remove(), 2500);
+          })
           .catch(() => alert("No se pudo copiar el enlace."));
       });
 
