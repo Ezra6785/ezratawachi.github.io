@@ -645,8 +645,9 @@
           justify-content: center;
         }
         .stats {
-          grid-template-columns: 1fr 1fr;
-          gap: 8px;
+          display: flex !important;
+          flex-direction: column !important;
+          gap: 12px !important;
         }
         .container {
           padding-bottom: var(--space-4);
@@ -1333,6 +1334,16 @@
       };
       setVH();
       window.addEventListener("resize", setVH);
+    </script>
+    <!-- Typed.js animación en héroe -->
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script>
+      new Typed(".typed-hero", {
+        strings: ["Operaciones, Automatización y Retail Tech"],
+        typeSpeed: 60,
+        showCursor: false,
+        loop: false,
+      });
     </script>
   </body>
 </html>
