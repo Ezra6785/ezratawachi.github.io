@@ -1164,7 +1164,120 @@
 
       // Descargar/Imprimir PDF
       $("#printBtn")?.addEventListener("click", () => {
-        window.print();
+        const printWindow = window.open("", "_blank");
+        printWindow.document.write(`
+          <html>
+            <head>
+              <title>CV - Ezra Tawachi</title>
+              <style>
+                body { font-family: 'Helvetica Neue', Arial, sans-serif; color: #222; background: #fff; padding: 40px; line-height: 1.6; }
+                h1 { font-size: 30px; margin-bottom: 4px; }
+                h2 { font-size: 18px; margin-top: 28px; border-bottom: 2px solid #0ea5a5; padding-bottom: 4px; color: #0ea5a5; }
+                h3 { font-size: 15px; margin-bottom: 4px; }
+                p, li { font-size: 13px; }
+                ul { margin: 6px 0 14px 20px; }
+                .header { text-align: center; margin-bottom: 24px; }
+                .contact { font-size: 13px; color: #555; }
+                .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+                .section { margin-bottom: 20px; }
+              </style>
+            </head>
+            <body>
+              <div class="header">
+                <h1>Ezra Tawachi</h1>
+                <div class="contact">Panamá · ezrawachi@gmail.com · +507 64931573 · LinkedIn</div>
+              </div>
+              <div class="section">
+                <h2>Perfil</h2>
+                <p>Me enfoco en aplicar tecnología práctica para optimizar operaciones, con experiencia en retail, distribución y automatización de procesos.</p>
+              </div>
+              <div class="two-col">
+                <div>
+                  <div class="section">
+                    <h2>Experiencia</h2>
+                    <h3>Empresa familiar · Retail/Distribución</h3>
+                    <p><small>Noviembre 2021 – Diciembre 2023 · Panamá</small></p>
+                    <ul>
+                      <li>Pasé procesos manuales a digitales (pedidos, inventario, cobros) para reducir errores y ahorrar tiempo.</li>
+                      <li>Implementé inventario en tiempo real con mínimos y alertas para hacer pedido a la bodega de Zona Libre.</li>
+                      <li>Creé un sistema de estados con stickers por WhatsApp (“pedido completo / parcial”), enviado cada día a las 2 pm, que redujo la percepción de entregas incompletas y fortaleció la confianza de los clientes.</li>
+                      <li>Rol integral en operación: atención al cliente, pagos, despachos, supervisión de personal, gestión tecnológica y marketing digital.</li>
+                    </ul>
+                    <h3>Farma 507 · Implementación SAP</h3>
+                    <p><small>2023 – 2024 · Panamá</small></p>
+                    <ul>
+                      <li>Participación en reuniones de implementación de SAP con Top Manage.</li>
+                      <li>Apoyo al departamento de compras: ingreso de órdenes de compra y flujos internos para sucursales.</li>
+                      <li>Reportes básicos en SQL para visibilidad de operaciones clave.</li>
+                      <li>Carga masiva de productos y flujo OCR para subir órdenes de compra en minutos.</li>
+                    </ul>
+                    <h3>Empresa familiar · Retorno (Operación y automatización)</h3>
+                    <p><small>2025 – Presente · Panamá</small></p>
+                    <ul>
+                      <li>Retorno tras cierre de farmacia para continuar en empresa familiar.</li>
+                      <li>Catálogo 1‑click en Google Sheets conectado a imágenes en Drive: genera catálogos PDF o Excel con fotos y precios seleccionados.</li>
+                      <li>Encargado de bodega y despachos, apoyo administrativo y solución de incidencias técnicas.</li>
+                    </ul>
+                  </div>
+                  <div class="section">
+                    <h2>Educación</h2>
+                    <ul>
+                      <li>University of Michigan – Web Design for Everybody (2020)</li>
+                      <li>IBM – Introduction to DevOps (2024)</li>
+                      <li>Google – Foundations of Cybersecurity (2025)</li>
+                    </ul>
+                  </div>
+                </div>
+                <div>
+                  <div class="section">
+                    <h2>Habilidades</h2>
+                    <ul>
+                      <li>Automatización (Apps Script / Zapier) – Avanzado</li>
+                      <li>Google Workspace Avanzado</li>
+                      <li>Excel Avanzado</li>
+                      <li>HTML • CSS • JS</li>
+                    </ul>
+                  </div>
+                  <div class="section">
+                    <h2>Logros</h2>
+                    <ul>
+                      <li>Reducción de reclamos por entregas incompletas</li>
+                      <li>Estados diarios automatizados por WhatsApp</li>
+                      <li>Conciliación eficiente de cobros integrada con estados de pedido</li>
+                      <li>Sistema de inventario completo con alertas de stock mínimo</li>
+                      <li>Carga masiva y OCR para órdenes y productos</li>
+                    </ul>
+                  </div>
+                  <div class="section">
+                    <h2>Idiomas</h2>
+                    <ul>
+                      <li>Español (nativo)</li>
+                      <li>Inglés (intermedio/avanzado)</li>
+                      <li>Hebreo (intermedio/avanzado)</li>
+                    </ul>
+                  </div>
+                  <div class="section">
+                    <h2>Proyectos</h2>
+                    <ul>
+                      <li>Inventario en la nube: mínimos, alertas y pedidos automáticos (Sheets + Apps Script)</li>
+                      <li>Sistema de distribución a locales: verificación de mercancía y pedidos cíclicos (Sheets + Apps Script)</li>
+                      <li>Pedidos + Estados por WhatsApp: notificaciones y trazabilidad (Zapier, WhatsApp)</li>
+                      <li>Catálogo 1-click para mayoristas: generación automática de catálogos personalizados (Sheets + Apps Script + PDF)</li>
+                      <li>Productos digitales (Etsy): plantillas avanzadas de Google Sheets con automatizaciones</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="section">
+                <h2>Sobre mí</h2>
+                <p>Soy una persona práctica. Me gusta resolver problemas con tecnología que la empresa pueda usar de inmediato. Disfruto aprender rápido, documentar lo que hago y trabajar con equipos de ventas, compras y bodega para que todo fluya. Me interesa aportar en un rol de Gerencia IT u Operaciones Tech, ayudando a ordenar procesos, automatizar flujos y construir tableros con datos claros para decidir mejor.</p>
+              </div>
+            </body>
+          </html>
+        `);
+        printWindow.document.close();
+        printWindow.focus();
+        printWindow.print();
       });
 
       // Copiar enlace del CV
