@@ -610,6 +610,31 @@
         z-index: 50;
       }
 
+      /* ============ SCROLL TO TOP BUTTON ============ */
+      #scrollTopBtn {
+        position: fixed;
+        top: max(20px, env(safe-area-inset-top));
+        right: max(20px, env(safe-area-inset-right));
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        background: rgba(0, 0, 0, 0.45);
+        backdrop-filter: blur(4px);
+        color: #fff;
+        font-size: 18px;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        box-shadow: var(--shadow);
+        cursor: pointer;
+        z-index: 50;
+      }
+      #scrollTopBtn:hover {
+        opacity: 0.9;
+        transform: translateY(-2px);
+      }
+
       /* ============ RESPONSIVE REFINEMENTS ============ */
       @media (max-width: 980px) {
         .hero {
@@ -1174,6 +1199,22 @@
       aria-label="Contactar por WhatsApp"
       >💬</a
     >
+    <!-- Botón scroll-to-top -->
+    <button id="scrollTopBtn" aria-label="Subir arriba">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        width="20"
+        height="20"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <polyline points="18 15 12 9 6 15"></polyline>
+      </svg>
+    </button>
 
     <script>
       // Utilidades
@@ -1369,6 +1410,20 @@
       };
       setVH();
       window.addEventListener("resize", setVH);
+    </script>
+    <script>
+      // Scroll-to-top button logic
+      const scrollBtn = document.getElementById("scrollTopBtn");
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 300) {
+          scrollBtn.style.display = "flex";
+        } else {
+          scrollBtn.style.display = "none";
+        }
+      });
+      scrollBtn?.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
     </script>
     <!-- Typed.js animación en héroe -->
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
